@@ -41,13 +41,7 @@ page 50201 "Student List"
                 ApplicationArea = All;
                 // RunObject = Page 50101;  
             }
-            // action("Shfaq Mesazhin")
-            // {
-            //     trigger OnAction()
-            //     begin
-            //         Message('Mesazhi u shfaq');
-            //     end;
-            // }
+
         }
     }
 }
