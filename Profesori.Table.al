@@ -9,6 +9,10 @@ table 50202 Profesori
             DataClassification = ToBeClassified;
 
         }
+        field(10; MyField1; Integer)
+        {
+            
+        }
     }
 
     keys
