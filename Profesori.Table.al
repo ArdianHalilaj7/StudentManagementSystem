@@ -4,20 +4,17 @@ table 50202 Profesori
 
     fields
     {
-        field(1; MyField; Integer)
+        field(1; Profesori_ID; Integer)
         {
             DataClassification = ToBeClassified;
 
         }
-        field(10; MyField1; Integer)
-        {
-            
-        }
+
     }
 
     keys
     {
-        key(Key1; MyField)
+        key(PK; Profesori_ID)
         {
             Clustered = true;
         }
