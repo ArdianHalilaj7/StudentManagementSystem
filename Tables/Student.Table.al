@@ -34,6 +34,16 @@ table 50201 "Student"
             OptionMembers = Active,Inactive,Graduated;
             Caption = 'Status';
         }
+
+         field(8; "Course of Study/Program"; Text[100])
+        {
+            DataClassification = ToBeClassified;
+        }
+
+        field(9; "Year of Study"; Text[100])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys
