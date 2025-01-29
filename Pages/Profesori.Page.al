@@ -3,7 +3,7 @@ page 50202 "Profesori Page"
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = Profesori;
+    SourceTable = Professor;
     
     layout
     {
@@ -11,7 +11,7 @@ page 50202 "Profesori Page"
         {
             group(GroupName)
             {
-                field(Profesori_ID;Rec.Profesori_ID)
+                field("Professor ID";Rec."Professor ID")
                 {
                     
                 }
