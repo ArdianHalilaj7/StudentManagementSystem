@@ -25,7 +25,7 @@ table 50202 Professor
 
         field(31; "Subject"; Enum ProfessorSubject)
         {
-            
+
         }
 
         field(40; "Date of Birth"; Date)
@@ -52,14 +52,14 @@ table 50202 Professor
 
         }
 
-        field(80; "Position/Title"; Text[100])
+        field(80; "Position/Title"; Enum ProfessorTitle)
         {
             DataClassification = ToBeClassified;
 
         }
 
 
-        field(90; "Office Address"; Text[100])
+        field(90; "Office Address"; enum ProfessorAddress)
         {
             DataClassification = ToBeClassified;
         }
