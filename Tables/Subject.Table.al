@@ -1,4 +1,4 @@
-table 50137 Subject
+table 50203 Subject
 {
     DataClassification = ToBeClassified;
 
