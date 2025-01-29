@@ -4,62 +4,67 @@ table 50202 Professor
 
     fields
     {
-        field(1; "Professor ID"; Integer)
+        field(10; "Professor ID"; Integer)
         {
             AutoIncrement = true;
             DataClassification = ToBeClassified;
 
         }
 
-        field(2; "First Name"; Text[100])
+        field(20; "First Name"; Text[100])
         {
             DataClassification = ToBeClassified;
 
         }
 
-        field(3; "Last Name"; Text[100])
+        field(30; "Last Name"; Text[100])
         {
             DataClassification = ToBeClassified;
 
         }
 
-        field(4; "Date of Birth"; Date)
+        field(31; "Subject"; Enum ProfessorSubject)
+        {
+            
+        }
+
+        field(40; "Date of Birth"; Date)
         {
             DataClassification = ToBeClassified;
 
         }
 
-        field(5; "Email"; Text[100])
+        field(50; "Email"; Text[100])
         {
             DataClassification = ToBeClassified;
 
         }
 
-        field(6; "Phone Number"; Integer)
+        field(60; "Phone Number"; Integer)
         {
             DataClassification = ToBeClassified;
 
         }
 
-        field(7; "Department"; Text[100])
+        field(70; "Department"; Text[100])
         {
             DataClassification = ToBeClassified;
 
         }
 
-        field(8; "Position/Title"; Text[100])
+        field(80; "Position/Title"; Text[100])
         {
             DataClassification = ToBeClassified;
 
         }
 
 
-        field(9; "Office Address"; Text[100])
+        field(90; "Office Address"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(10; "Office Hours"; Text[100])
+        field(100; "Office Hours"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
