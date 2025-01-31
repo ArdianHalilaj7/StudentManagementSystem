@@ -70,11 +70,7 @@ table 50202 Professor
 
     keys
     {
-<<<<<<< HEAD:Tables/Profesori.Table.al
         key(PK; "Professor ID") { Clustered = true;}
-=======
-        key(PK; "Professor ID") { Clustered = true; }
->>>>>>> 0d3c3cf29d2dfd14771f8c19ed0e86b522e56592:Tables/Professor.Table.al
     }
 
     fieldgroups
