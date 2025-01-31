@@ -3,7 +3,7 @@ page 50206 "Subjects' List"
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = SubjectMS;
+    SourceTable = Subject;
 
     layout
     {
@@ -55,5 +55,5 @@ page 50206 "Subjects' List"
 
 
     var
-        subject: Record SubjectMS;
+        subject: Record Subject;
 }

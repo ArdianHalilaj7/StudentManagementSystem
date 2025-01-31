@@ -1,10 +1,10 @@
-page 50211 "Professor Schedule"
+page 50214 "Subject Schedule"
 {
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = "Professor Schedule";
-
+    SourceTable = "Subject Schedule";
+ 
     layout
     {
         area(Content)
@@ -13,72 +13,53 @@ page 50211 "Professor Schedule"
             {
                 ApplicationArea = All;
             }
-            group(Professor)
+            group("Professor")
             {
-
-
-
                 field("Professor ID"; Rec."Professor ID")
                 {
                     ApplicationArea = All;
-                    TableRelation = Professor;
-
-                    trigger OnLookup(var Text: Text): Boolean
-                    begin
-                        exit(systemCodeunit.PerformLookup(Text, 'Professor'));
-                    end;
                 }
-
+ 
                 field("Professor Name"; systemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-
-
-
-
+ 
             }
-
-            group(Subject)
+            group("Subject")
             {
+ 
                 field("Subject ID"; Rec."Subject ID")
                 {
                     ApplicationArea = All;
-                    TableRelation = Subject;
-
-                    trigger OnLookup(var Text: Text): Boolean
-                    begin
-                        exit(systemCodeunit.PerformLookup(Text, 'Subject'));
-                    end;
                 }
-
+ 
                 field("Subject Name"; systemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
             }
-
-            group("Course Period")
+            group("Class Information")
             {
-
-
-                field("Start Date"; Rec."Start Date")
+                field("Start Time"; Rec."Start Time")
                 {
                     ApplicationArea = All;
                 }
-
-                field("End Date"; Rec."End Date")
+ 
+                field("End Time"; Rec."End Time")
+                {
+                    ApplicationArea = All;
+                }
+                field("Day(s)"; Rec."Day(s)")
                 {
                     ApplicationArea = All;
                 }
             }
         }
     }
-
-
+ 
     var
         systemCodeunit: Codeunit SystemCodeunit;
-
 }

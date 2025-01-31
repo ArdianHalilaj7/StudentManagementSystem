@@ -12,10 +12,10 @@ page 50205 "Professor Card"
             group("Personal Information")
             {
  
-                // field("Professor ID"; Rec."Professor ID")
-                // {
-                //     ApplicationArea = All;
-                // }
+                /* field("Professor ID"; Rec."Professor ID")
+                 {
+                     ApplicationArea = All;
+                 }*/
  
                 field("First Name"; Rec."First Name")
                 {

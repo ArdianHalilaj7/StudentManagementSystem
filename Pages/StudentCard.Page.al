@@ -12,10 +12,10 @@ page 50203 "Student Card"
         {
             group("Personal Information")
             {
-                // field("Student ID"; Rec."Student ID")
-                // {
-                //     ApplicationArea = All;
-                // }
+                /* field("Student ID"; Rec."Student ID")
+                 {
+                     ApplicationArea = All;
+                 }*/
 
                 field("First Name"; Rec."First Name")
                 {

@@ -75,14 +75,14 @@ page 50201 "Students' List"
     {
         area(Navigation)
         {
-            // action(navigate_StudentDetails)
-            // {
-            //     ApplicationArea = All;
-            //     Caption = 'Student Details';
-            //     Image = User;
-            //     RunObject = page "Student Card";
+            /* action(navigate_StudentDetails)
+             {
+                 ApplicationArea = All;
+                 Caption = 'Student Details';
+                 Image = User;
+                RunObject = page "Student Card";
 
-            // }
+             }*/
         }
         area(Processing)
         {
@@ -127,13 +127,13 @@ page 50201 "Students' List"
 
 
 
-            // action(navigate_EnrollmentCard)
-            // {
-            //     ApplicationArea = All;
-            //     Caption = 'Enrollments'' Details';
-            //     Image = Form;
-            //     RunObject = page "Enrollment Card";
-            // }
+            /* action(navigate_EnrollmentCard)
+             {
+                 ApplicationArea = All;
+                 Caption = 'Enrollments'' Details';
+                 Image = Form;
+                 RunObject = page "Enrollment Card";
+             }*/
         }
     }
 

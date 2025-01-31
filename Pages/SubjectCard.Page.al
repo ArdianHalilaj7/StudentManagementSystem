@@ -3,7 +3,7 @@ page 50207 "Subject Card"
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = SubjectMS;
+    SourceTable = Subject;
 
     layout
     {
@@ -11,11 +11,11 @@ page 50207 "Subject Card"
         {
             group("Subject Information")
             {
-                // field(SubjectID; Rec."Subject ID")
-                // {
-                //     ApplicationArea = All;
+                /* field(SubjectID; Rec."Subject ID")
+                {
+                     ApplicationArea = All;
 
-                // }
+                 }*/
 
                 field("Subject Name"; Rec."Name")
                 {
