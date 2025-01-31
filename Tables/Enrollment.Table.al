@@ -1,45 +1,48 @@
-table 50203 Subject
+table 50238 Enrollment
 {
     DataClassification = ToBeClassified;
 
     fields
     {
-        field(10; "Subject ID"; Integer)
+        field(10; "Enrollment ID"; Integer)
         {
+            DataClassification = ToBeClassified;
             AutoIncrement = true;
-            DataClassification = ToBeClassified;
+
         }
 
-        field(20; "Name"; Text[200])
+        field(20; "Student ID"; Integer)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(30; "Credits"; Integer)
+        field(30; "Subject ID"; Integer)
         {
             DataClassification = ToBeClassified;
+
         }
 
-        field(40; "Description"; Text[500])
+        field(40; "Enrollment Date"; Date)
         {
             DataClassification = ToBeClassified;
-        }
 
-        field(50; "Department"; Option)
-        {
-            DataClassification = ToBeClassified;
-            OptionMembers = Acting,Architecture,"Electronic engineering","Computer Science",Law, Physics ,Sports;
         }
-
     }
 
     keys
     {
-        key("PK"; "Subject ID"){ Clustered = true;}
-        
-            
-        
+        key(PK; "Enrollment ID")
+        {
+            Clustered = true;
+        }
+
+        key("Student ID & Subject ID"; "Student ID", "Subject ID")
+        {
+            Clustered = false;
+        }
     }
+
+
 
     // fieldgroups
     // {
