@@ -1,4 +1,4 @@
-table 50240 "Subject Schedule"
+table 50206 "Subject Schedule"
 {
     DataClassification = ToBeClassified;
     fields
