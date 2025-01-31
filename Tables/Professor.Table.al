@@ -23,10 +23,6 @@ table 50202 Professor
 
         }
 
-        field(31; "Subject"; Enum ProfessorSubject)
-        {
-
-        }
 
         field(40; "Date of Birth"; Date)
         {
@@ -46,9 +42,10 @@ table 50202 Professor
 
         }
 
-        field(70; "Department"; Text[100])
+        field(70; "Department"; Option)
         {
             DataClassification = ToBeClassified;
+            OptionMembers = Acting,Architecture,"Electronic Engineering","Computer Science",Law,Physics,Sports;
 
         }
 
@@ -73,7 +70,7 @@ table 50202 Professor
 
     keys
     {
-        key(PK; "Profesor ID") { Clustered = true;}
+        key(PK; "Profesor ID") { Clustered = true; }
     }
 
     fieldgroups
