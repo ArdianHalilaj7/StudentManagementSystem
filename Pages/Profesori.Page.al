@@ -23,10 +23,7 @@ page 50202 "Profesori Page"
                 {
 
                 }
-                field(Subject;Rec.Subject)
-                {
-                    
-                }
+                
                 field("Date of Birth";Rec."Date of Birth")
                 {
 
