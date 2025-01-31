@@ -4,28 +4,28 @@ table 50203 Subject
 
     fields
     {
-        field(1; "Subject ID"; Integer)
+        field(10; "Subject ID"; Integer)
         {
             AutoIncrement = true;
             DataClassification = ToBeClassified;
         }
 
-        field(2; "Name"; Text[200])
+        field(20; "Name"; Text[200])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(3; "Credits"; Integer)
+        field(30; "Credits"; Integer)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(4; "Description"; Text[500])
+        field(40; "Description"; Text[500])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(5; "Department"; Option)
+        field(50; "Department"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = Acting,Architecture,"Electronic engineering","Computer Science",Law, Physics ,Sports;

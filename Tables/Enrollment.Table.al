@@ -4,25 +4,25 @@ table 50138 Enrollment
 
     fields
     {
-        field(1; "Enrollment ID"; Integer)
+        field(10; "Enrollment ID"; Integer)
         {
             DataClassification = ToBeClassified;
             AutoIncrement = true;
 
         }
 
-        field(2; "Student ID"; Integer)
+        field(20; "Student ID"; Integer)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(3; "Subject ID"; Integer)
+        field(30; "Subject ID"; Integer)
         {
             DataClassification = ToBeClassified;
 
         }
 
-        field(4; "Enrollment Date"; Date)
+        field(40; "Enrollment Date"; Date)
         {
             DataClassification = ToBeClassified;
 
