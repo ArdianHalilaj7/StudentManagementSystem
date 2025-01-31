@@ -5,9 +5,10 @@ table 50201 "Student"
 
     fields
     {
-        field(10; "Student ID"; Code[20])
+        field(10; "Student ID"; Integer)
         {
             Caption = 'Student ID';
+            AutoIncrement = true;
         }
         field(20; "First Name"; Text[50])
         {
