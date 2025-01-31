@@ -1,9 +1,9 @@
-page 50202 "Student Card"
+page 50203 "Student Card"
 {
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = StudentMS;
+    SourceTable = Student;
     Caption = 'Student Card';
 
     layout

@@ -63,7 +63,7 @@ codeunit 50201 SystemCodeunit
 
     var
 
-        student: Record StudentMS;
-        subject: Record SubjectMS;
-        professor: Record ProfessorMS;
+        student: Record Student;
+        subject: Record Subject;
+        professor: Record Professor;
 }

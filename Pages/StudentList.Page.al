@@ -3,7 +3,7 @@ page 50201 "Students' List"
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = StudentMS;
+    SourceTable = Student;
     Caption = 'Students';
 
     layout
@@ -138,7 +138,7 @@ page 50201 "Students' List"
     }
 
     var
-        student: Record StudentMS;
+        student: Record Student;
 
 
 }
