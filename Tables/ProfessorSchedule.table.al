@@ -1,4 +1,4 @@
-table 50239 "Professor Schedule"
+table 50205 "Professor Schedule"
 {
     DataClassification = ToBeClassified;
  

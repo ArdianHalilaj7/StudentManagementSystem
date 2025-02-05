@@ -35,11 +35,14 @@ page 50201 "Students' List"
                 {
                     ApplicationArea = All;
                 }
+                field(Gender;Rec.Gender)
+                {}
 
                 field("Date of Birth"; Rec."Date of Birth")
                 {
                     ApplicationArea = All;
                 }
+                field(Age;Rec.Age){}
 
                 field("Phone Number"; Rec."Phone Number")
                 {
