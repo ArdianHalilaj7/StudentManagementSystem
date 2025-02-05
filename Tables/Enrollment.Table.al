@@ -1,4 +1,4 @@
-table 50238 Enrollment
+table 50204 Enrollment
 {
     DataClassification = ToBeClassified;
 

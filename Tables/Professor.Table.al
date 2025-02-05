@@ -70,7 +70,7 @@ table 50202 Professor
 
     keys
     {
-        key(PK; "Professor ID") { Clustered = true; }
+        key(PK; "Professor ID") { Clustered = true;}
     }
 
     fieldgroups
