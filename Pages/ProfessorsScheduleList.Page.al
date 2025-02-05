@@ -11,54 +11,53 @@ page 50210 "Professors' Schedule"
         {
             repeater("Proffesors' Schedule")
             {
-                field("Schedule ID"; Rec."Schedule ID")
-                {
-                    ApplicationArea = All;
-                    DrillDown = true;
-
-                    trigger OnDrillDown()
-
-                    begin
-                        if professorsSchedule.Get(Rec."Schedule ID") then begin
-                            Page.Run(Page::"Professor Schedule", professorsSchedule);
-                        end;
-                    end;
-                }
 
 
-                field("Professor ID"; Rec."Professor ID")
+
+                field("Professor"; professorName)
                 {
                     ApplicationArea = All;
                     TableRelation = Professor;
 
                     trigger OnLookup(var Text: Text): Boolean
+
+                    var
+                        professorID: Integer;
+
                     begin
-                        exit(systemCodeunit.PerformLookup(Text, 'Professor'));
+                        if systemCodeunit.PerformLookup(Text, 'Professor', professorID) then begin
+                            if professor.Get(professorID) then begin
+                                Rec."Professor ID" := professorID;
+                            end;
+                            exit(true);
+                        end;
                     end;
                 }
 
-                field("Professor Name"; systemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                }
 
-                field("Subject ID"; Rec."Subject ID")
+                field("Subject"; subjectName)
                 {
                     ApplicationArea = All;
                     TableRelation = Subject;
-
                     trigger OnLookup(var Text: Text): Boolean
+
+                    var
+                        subjectID: Integer;
+
                     begin
-                        exit(systemCodeunit.PerformLookup(Text, 'Subject'));
+                        if systemCodeunit.PerformLookup(Text, 'Subject', subjectID) then begin
+                            if subject.Get(subjectID) then begin
+                                Rec."Subject ID" := subject."Subject ID";
+
+
+                            end;
+                            exit(true);
+                        end;
                     end;
+
                 }
 
-                field("Subject Name"; systemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                }
+
 
                 field("Start Date"; Rec."Start Date")
                 {
@@ -77,5 +76,15 @@ page 50210 "Professors' Schedule"
     var
         systemCodeunit: Codeunit SystemCodeunit;
         professorsSchedule: Record "Professor Schedule";
+        professor: Record Professor;
+        subject: Record Subject;
+        subjectName: Text[100];
+        professorName: Text[100];
+
+    trigger OnAfterGetRecord()
+    begin
+        professorName := systemCodeunit.GetRecordName('Professor', Rec."Professor ID");
+        subjectName := systemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+    end;
 
 }

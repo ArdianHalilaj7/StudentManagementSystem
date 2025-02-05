@@ -9,25 +9,9 @@ page 50211 "Professor Schedule"
     {
         area(Content)
         {
-            field("Schedule ID"; Rec."Schedule ID")
-            {
-                ApplicationArea = All;
-            }
+
             group(Professor)
             {
-
-
-
-                field("Professor ID"; Rec."Professor ID")
-                {
-                    ApplicationArea = All;
-                    TableRelation = Professor;
-
-                    trigger OnLookup(var Text: Text): Boolean
-                    begin
-                        exit(systemCodeunit.PerformLookup(Text, 'Professor'));
-                    end;
-                }
 
                 field("Professor Name"; systemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
                 {
@@ -35,23 +19,11 @@ page 50211 "Professor Schedule"
                     Editable = false;
                 }
 
-
-
-
             }
 
             group(Subject)
             {
-                field("Subject ID"; Rec."Subject ID")
-                {
-                    ApplicationArea = All;
-                    TableRelation = Subject;
-
-                    trigger OnLookup(var Text: Text): Boolean
-                    begin
-                        exit(systemCodeunit.PerformLookup(Text, 'Subject'));
-                    end;
-                }
+                
 
                 field("Subject Name"; systemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
                 {

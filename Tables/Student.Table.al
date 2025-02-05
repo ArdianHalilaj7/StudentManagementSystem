@@ -5,9 +5,11 @@ table 50201 "Student"
 
     fields
     {
-        field(10; "Student ID"; Code[20])
+        field(10; "Student ID"; Integer)
         {
             Caption = 'Student ID';
+            AutoIncrement = true;
+
         }
         field(20; "First Name"; Text[50])
         {
@@ -35,15 +37,21 @@ table 50201 "Student"
             Caption = 'Status';
         }
 
-         field(80; "Course of Study/Program"; Text[100])
+        field(80; "Degree Level"; enum DegreeLevel)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(90; "Year of Study"; Text[100])
+        field(90; "Field of Study"; Enum FieldStudy)
         {
             DataClassification = ToBeClassified;
         }
+
+        field(100; "Year of Study"; enum StudentYearOfStudy)
+        {
+            DataClassification = ToBeClassified;
+        }
+
     }
 
     keys

@@ -16,6 +16,8 @@ table 50238 Enrollment
             DataClassification = ToBeClassified;
         }
 
+
+
         field(30; "Subject ID"; Integer)
         {
             DataClassification = ToBeClassified;
