@@ -9,12 +9,7 @@ table 50201 "Student"
         {
             AutoIncrement = true;
             Caption = 'Student ID';
-<<<<<<< HEAD
-            AutoIncrement = true;
-
-=======
             
->>>>>>> 6945b860f341d2e1f0f55848515c0348a803c5a1
         }
         field(20; "First Name"; Text[50])
         {
