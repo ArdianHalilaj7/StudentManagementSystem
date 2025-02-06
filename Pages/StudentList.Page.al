@@ -15,8 +15,16 @@ page 50201 "Students' List"
                 field("Student ID"; Rec."Student ID")
                 {
                     ApplicationArea = All;
-                    DrillDown = true;
+                    Visible = false;
 
+
+
+                }
+
+                field("First Name"; Rec."First Name")
+                {
+                    ApplicationArea = All;
+                    DrillDown = true;
                     trigger OnDrillDown()
 
                     begin
@@ -24,11 +32,6 @@ page 50201 "Students' List"
                             Page.Run(Page::"Student Card", student);
                         end
                     end;
-                }
-
-                field("First Name"; Rec."First Name")
-                {
-                    ApplicationArea = All;
                 }
 
                 field("Last Name"; Rec."Last Name")
@@ -76,7 +79,7 @@ page 50201 "Students' List"
 
     actions
     {
-        
+
         area(Processing)
         {
             action(navigate_ProfessorList)

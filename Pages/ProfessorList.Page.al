@@ -15,6 +15,13 @@ page 50204 "Professors' List"
                 field("Professor ID"; Rec."Professor ID")
                 {
                     ApplicationArea = All;
+                    Visible = false;
+                    
+                }
+ 
+                field("First Name"; Rec."First Name")
+                {
+                    ApplicationArea = All;
                     DrillDown = true;
  
                     trigger OnDrillDown()
@@ -24,11 +31,6 @@ page 50204 "Professors' List"
                             Page.Run(Page::"Professor Card", professor);
                         end;
                     end;
-                }
- 
-                field("First Name"; Rec."First Name")
-                {
-                    ApplicationArea = All;
                 }
 
                 field("Last Name"; Rec."Last Name")
