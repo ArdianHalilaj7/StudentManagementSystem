@@ -42,10 +42,9 @@ table 50202 Professor
 
         }
 
-        field(70; "Department"; Option)
+        field(70; "Department"; enum FieldStudy)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = Acting,Architecture,"Electronic Engineering","Computer Science",Law,Physics,Sports;
 
         }
 
@@ -61,7 +60,7 @@ table 50202 Professor
             DataClassification = ToBeClassified;
         }
 
-        field(100; "Office Hours"; Text[100])
+        field(100; "Office Hours"; enum ProfessorWorkingHours)
         {
             DataClassification = ToBeClassified;
         }

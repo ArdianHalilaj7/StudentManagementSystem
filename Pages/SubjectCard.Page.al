@@ -47,19 +47,22 @@ page 50207 "Subject Card"
 
     actions
     {
-        area(Processing)
+        area(Navigation)
         {
-            action(ActionName)
+            action(see_Students_Enrolled)
             {
-
+                ApplicationArea = All;
+                Caption = 'Students Enrolled';
+                Image = View;
                 trigger OnAction()
+                
                 begin
-
+                    systemCodeunit.ShowRelatedRecords('Subject', Rec."Subject ID");
                 end;
+
             }
         }
     }
-
     var
-        myInt: Integer;
+        systemCodeunit: Codeunit SystemCodeunit;
 }

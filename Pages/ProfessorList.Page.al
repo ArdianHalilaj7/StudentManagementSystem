@@ -30,22 +30,40 @@ page 50204 "Professors' List"
                 {
                     ApplicationArea = All;
                 }
- 
+
                 field("Last Name"; Rec."Last Name")
                 {
                     ApplicationArea = All;
                 }
- 
-                field(Department; Rec.Department)
-                {
-                    ApplicationArea = All;
-                }
+
                 field("Date of Birth"; Rec."Date of Birth")
                 {
                     ApplicationArea = All;
                 }
- 
+
                 field("Phone Number"; Rec."Phone Number")
+                {
+                    ApplicationArea = All;
+                }
+
+                field(Email;Rec.Email)
+                {
+                    ApplicationArea = All;
+                }
+
+                field(Department; Rec.Department)
+                {
+                    ApplicationArea = All;
+                }
+                field("Position/Title"; Rec."Position/Title")
+                {
+                    ApplicationArea = All;
+                }
+                field("Office Address"; Rec."Office Address")
+                {
+                    ApplicationArea = All;
+                }
+                field("Office Hours";Rec."Office Hours")
                 {
                     ApplicationArea = All;
                 }

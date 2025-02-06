@@ -4,37 +4,28 @@ page 50214 "Subject Schedule"
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = "Subject Schedule";
- 
+
     layout
     {
         area(Content)
         {
-            field("Schedule ID"; Rec."Schedule ID")
-            {
-                ApplicationArea = All;
-            }
+
             group("Professor")
             {
-                field("Professor ID"; Rec."Professor ID")
-                {
-                    ApplicationArea = All;
-                }
- 
+
+
                 field("Professor Name"; systemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
- 
+
             }
             group("Subject")
             {
- 
-                field("Subject ID"; Rec."Subject ID")
-                {
-                    ApplicationArea = All;
-                }
- 
+
+
+
                 field("Subject Name"; systemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
                 {
                     ApplicationArea = All;
@@ -47,7 +38,7 @@ page 50214 "Subject Schedule"
                 {
                     ApplicationArea = All;
                 }
- 
+
                 field("End Time"; Rec."End Time")
                 {
                     ApplicationArea = All;
@@ -59,7 +50,7 @@ page 50214 "Subject Schedule"
             }
         }
     }
- 
+
     var
         systemCodeunit: Codeunit SystemCodeunit;
 }

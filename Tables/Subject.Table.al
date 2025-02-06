@@ -25,10 +25,9 @@ table 50203 Subject
             DataClassification = ToBeClassified;
         }
 
-        field(50; "Department"; Option)
+        field(50; "Department"; Enum FieldStudy)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = Acting,Architecture,"Electronic engineering","Computer Science",Law, Physics ,Sports;
         }
 
     }

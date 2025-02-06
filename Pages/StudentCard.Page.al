@@ -44,70 +44,44 @@ page 50203 "Student Card"
                 {
                     ApplicationArea = All;
                 }
+                field("Degree Level"; Rec."Degree Level")
+                {
+                    ApplicationArea = All;
 
+                }
                 field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
                 }
-
-                field("Course of Study/Program"; Rec."Course of Study/Program")
+                field("Field of Study"; Rec."Field of Study")
                 {
                     ApplicationArea = All;
                 }
-
                 field("Year of Study"; Rec."Year of Study")
                 {
                     ApplicationArea = All;
                 }
             }
         }
-    }
 
+    }
     actions
     {
         area(Navigation)
         {
-            // action(navigate_ProfessorList)
-            // {
-            //     ApplicationArea = All;
-            //     Caption = 'Professors';
-            //     Image = Users;
-            //     RunObject = page "Professors'' List";
-            // }
-            // action(navigate_ProfessorSchedule)
-            // {
-            //     ApplicationArea = All;
-            //     Caption = 'Professors'' Schedule';
-            //     Image = Addresses;
-            //     RunObject = page "Professors'' Schedule";
-            // }
-            // action(navigate_SubjectList)
-            // {
-            //     ApplicationArea = All;
-            //     Caption = 'Subjects';
-            //     Image = Note;
-            //     RunObject = page "Subject List";
-            // }
-
-            // action(navigate_EnrollmentList)
-            // {
-            //     ApplicationArea = All;
-            //     Caption = 'Enrollments';
-            //     Image = Form;
-            //     RunObject = page "Enrollment List";
-            // }
-
-            // action(navigate_EnrollmentCard)
-            // {
-            //     ApplicationArea = All;
-            //     Caption = 'Enrollments'' Details';
-            //     Image = Form;
-            //     RunObject = page "Enrollment Card";
-            // }
-
+            action(open_StudentEnrollments)
+            {
+                ApplicationArea = All;
+                Caption = 'Student Enrollments in Subjects';
+                Image = View;
+                trigger OnAction()
+                begin
+                    systemCodeunit.ShowRelatedRecords('Student', Rec."Student ID");
+                end;
+            }
         }
     }
 
     var
-        myInt: Integer;
+        systemCodeunit : Codeunit SystemCodeunit;
 }

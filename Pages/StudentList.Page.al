@@ -10,7 +10,7 @@ page 50201 "Students' List"
     {
         area(Content)
         {
-            repeater("Personal Information")
+            repeater("Student Information")
             {
                 field("Student ID"; Rec."Student ID")
                 {
@@ -55,9 +55,12 @@ page 50201 "Students' List"
                     ApplicationArea = All;
                 }
 
+                field("Degree Level"; Rec."Degree Level")
+                {
+                    ApplicationArea = All;
+                }
 
-
-                field("Course of Study/Program"; Rec."Course of Study/Program")
+                field("Field of Study"; Rec."Field of Study")
                 {
                     ApplicationArea = All;
                 }
@@ -73,17 +76,7 @@ page 50201 "Students' List"
 
     actions
     {
-        area(Navigation)
-        {
-            /* action(navigate_StudentDetails)
-             {
-                 ApplicationArea = All;
-                 Caption = 'Student Details';
-                 Image = User;
-                RunObject = page "Student Card";
-
-             }*/
-        }
+        
         area(Processing)
         {
             action(navigate_ProfessorList)
@@ -135,6 +128,7 @@ page 50201 "Students' List"
                  RunObject = page "Enrollment Card";
              }*/
         }
+
     }
 
     var
