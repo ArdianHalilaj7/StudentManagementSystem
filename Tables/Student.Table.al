@@ -46,10 +46,7 @@ table 50201 "Student"
             Caption = 'Gender';
             DataClassification = ToBeClassified;
         }
-        // field(40; "Date of Birth"; Date)
-        // {
-        //     Caption = 'Date of Birth';
-        // }
+       
         field(40; "Date of Birth"; Date)
         {
             Caption = 'Date of Birth';
@@ -78,7 +75,7 @@ table 50201 "Student"
                 prefix: Text[14];
             begin
                 prefix := '+383';
-                Rec."Phone Number" := prefix + ' ' + Rec."Phone Number";
+                Rec."Phone Number" := prefix + Rec."Phone Number";
 
             end;
         }
