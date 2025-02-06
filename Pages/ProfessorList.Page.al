@@ -22,15 +22,15 @@ page 50204 "Professors' List"
                 field("First Name"; Rec."First Name")
                 {
                     ApplicationArea = All;
-                    DrillDown = true;
+                    // DrillDown = true;
  
-                    trigger OnDrillDown()
+                    // trigger OnDrillDown()
  
-                    begin
-                        if professor.Get(rec."Professor ID") then begin
-                            Page.Run(Page::"Professor Card", professor);
-                        end;
-                    end;
+                    // begin
+                    //     if professor.Get(rec."Professor ID") then begin
+                    //         Page.Run(Page::"Professor Card", professor);
+                    //     end;
+                    // end;
                 }
 
                 field("Last Name"; Rec."Last Name")

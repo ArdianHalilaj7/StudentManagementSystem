@@ -24,14 +24,14 @@ page 50201 "Students' List"
                 field("First Name"; Rec."First Name")
                 {
                     ApplicationArea = All;
-                    DrillDown = true;
-                    trigger OnDrillDown()
+                    // DrillDown = true;
+                    // trigger OnDrillDown()
 
-                    begin
-                        if student.Get(Rec."Student ID") then begin
-                            Page.Run(Page::"Student Card", student);
-                        end
-                    end;
+                    // begin
+                    //     if student.Get(Rec."Student ID") then begin
+                    //         Page.Run(Page::"Student Card", student);
+                    //     end
+                    // end;
                 }
 
                 field("Last Name"; Rec."Last Name")

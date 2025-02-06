@@ -36,10 +36,17 @@ table 50202 Professor
 
         }
 
-        field(60; "Phone Number"; Integer)
+       field(60; "Phone Number"; Text[14])
         {
-            DataClassification = ToBeClassified;
+            Caption = 'Phone Number';
+            trigger OnValidate()
+            var
+                prefix: Text[14];
+            begin
+                prefix := '+383';
+                Rec."Phone Number" := prefix + ' ' + Rec."Phone Number";
 
+            end;
         }
 
         field(70; "Department"; enum FieldStudy)

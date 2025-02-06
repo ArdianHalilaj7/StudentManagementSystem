@@ -21,14 +21,14 @@ page 50206 "Subjects' List"
                 field("Subject Name"; Rec."Name")
                 {
                     ApplicationArea = All;
-                    DrillDown = true;
+                    // DrillDown = true;
 
-                    trigger OnDrillDown()
-                    begin
-                        if subject.Get(Rec."Subject ID") then begin
-                            Page.Run(Page:: "Subject Card" , subject);
-                        end;
-                    end;
+                    // trigger OnDrillDown()
+                    // begin
+                    //     if subject.Get(Rec."Subject ID") then begin
+                    //         Page.Run(Page:: "Subject Card" , subject);
+                    //     end;
+                    // end;
 
                 }
 
