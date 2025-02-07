@@ -31,11 +31,20 @@ page 50203 "Student Card"
                 {
                     ApplicationArea = All;
                 }
+                field(Gender; Rec.Gender)
+                {
+                    ApplicationArea = All;
+                }
+                field(Age; Rec.Age)
+                {
+                    ApplicationArea = All;
+                }
 
                 field("Phone Number"; Rec."Phone Number")
                 {
                     ApplicationArea = All;
                 }
+
             }
 
             group("University Information")
@@ -53,7 +62,7 @@ page 50203 "Student Card"
                 {
                     ApplicationArea = All;
                 }
-                field("Field of Study"; Rec."Field of Study")
+                field("Department"; Rec."Department")
                 {
                     ApplicationArea = All;
                 }
@@ -83,5 +92,5 @@ page 50203 "Student Card"
     }
 
     var
-        systemCodeunit : Codeunit SystemCodeunit;
+        systemCodeunit: Codeunit SystemCodeunit;
 }

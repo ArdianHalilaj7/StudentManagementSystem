@@ -11,6 +11,19 @@ page 50213 "Subjects' Schedule"
         {
             repeater("Subject Schedule")
             {
+                field("Schedule ID";Rec."Schedule ID")
+                {
+                    ApplicationArea = All;
+                    //Visible = false;
+                    DrillDown = true;
+
+                    trigger OnDrillDown()
+                    begin
+                        if subjectSchedule.Get(Rec."Schedule ID") then begin
+                            Page.Run(Page:: "Subject Schedule", subjectSchedule);
+                        end;
+                    end;
+                }
 
 
                 field("Professor"; professorName)
@@ -43,11 +56,15 @@ page 50213 "Subjects' Schedule"
                         subjectID: Integer;
 
                     begin
+                        //If the subject is selected before the professor
+                        if Rec."Professor ID" = 0 then begin
+                            Message('Select the professor first.');
+                            exit(false);
+                        end;
+
                         if systemCodeunit.PerformLookup(Text, 'Subject', subjectID) then begin
                             if subject.Get(subjectID) then begin
                                 Rec."Subject ID" := subject."Subject ID";
-
-
                             end;
                             exit(true);
                         end;
@@ -55,8 +72,7 @@ page 50213 "Subjects' Schedule"
 
                 }
 
-
-                field("Day(s)"; Rec."Day(s)")
+                field("Day"; Rec."Day")
                 {
                     ApplicationArea = All;
                 }
@@ -76,7 +92,7 @@ page 50213 "Subjects' Schedule"
 
     var
         systemCodeunit: Codeunit SystemCodeunit;
-        subjectsSchedule: Record "Subject Schedule";
+        subjectSchedule: Record "Subject Schedule";
         student: Record Student;
         professor: Record Professor;
         subject: Record Subject;

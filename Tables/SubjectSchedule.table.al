@@ -20,7 +20,7 @@ table 50206 "Subject Schedule"
             DataClassification = ToBeClassified;
         }
 
-        field(40; "Day(s)"; Option)
+        field(40; "Day"; Option)
         {
             OptionMembers = Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
         }

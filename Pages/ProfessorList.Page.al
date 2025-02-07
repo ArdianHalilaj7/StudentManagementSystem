@@ -4,33 +4,34 @@ page 50204 "Professors' List"
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = Professor;
- 
+
     layout
     {
         area(Content)
         {
             repeater("Personal Information")
             {
- 
+
                 field("Professor ID"; Rec."Professor ID")
                 {
                     ApplicationArea = All;
-                    Visible = false;
-                    
+                    //Visible = false;
+                    DrillDown = true;
+
+                    trigger OnDrillDown()
+
+                    begin
+                        if professor.Get(rec."Professor ID") then begin
+                            Page.Run(Page::"Professor Card", professor);
+                        end;
+                    end;
+
                 }
- 
+
                 field("First Name"; Rec."First Name")
                 {
                     ApplicationArea = All;
-                    // DrillDown = true;
- 
-                    // trigger OnDrillDown()
- 
-                    // begin
-                    //     if professor.Get(rec."Professor ID") then begin
-                    //         Page.Run(Page::"Professor Card", professor);
-                    //     end;
-                    // end;
+
                 }
 
                 field("Last Name"; Rec."Last Name")
@@ -48,7 +49,7 @@ page 50204 "Professors' List"
                     ApplicationArea = All;
                 }
 
-                field(Email;Rec.Email)
+                field(Email; Rec.Email)
                 {
                     ApplicationArea = All;
                 }
@@ -65,15 +66,15 @@ page 50204 "Professors' List"
                 {
                     ApplicationArea = All;
                 }
-                field("Office Hours";Rec."Office Hours")
+                field("Office Hours"; Rec."Office Hours")
                 {
                     ApplicationArea = All;
                 }
- 
+
             }
         }
     }
- 
+
     var
         professor: Record Professor;
 }

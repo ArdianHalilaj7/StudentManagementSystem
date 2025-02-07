@@ -13,11 +13,15 @@ page 50215 "Student Enrollments"
                 field("Subject"; subjectName)
                 {
                     ApplicationArea = All;
+                    Editable = false;
+
                 }
 
                 field("Enrollment Date"; Rec."Enrollment Date")
                 {
                     ApplicationArea = All;
+                    Editable = false;
+
                 }
             }
         }

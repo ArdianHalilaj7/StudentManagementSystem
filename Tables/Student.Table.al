@@ -90,7 +90,7 @@ table 50201 "Student"
             DataClassification = ToBeClassified;
         }
 
-        field(90; "Field of Study"; Enum FieldStudy)
+        field(90; "Department"; Enum Department)
         {
             DataClassification = ToBeClassified;
         }

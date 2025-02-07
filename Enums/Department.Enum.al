@@ -1,4 +1,4 @@
-enum 50208 FieldStudy
+enum 50208 Department
 {
     Extensible = true;
     

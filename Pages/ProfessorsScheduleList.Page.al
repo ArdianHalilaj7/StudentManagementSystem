@@ -12,7 +12,20 @@ page 50210 "Professors' Schedule"
             repeater("Proffesors' Schedule")
             {
 
+                field("Schedule ID"; Rec."Schedule ID")
+                {
+                    ApplicationArea = All;
+                    //Visible = false;
+                    DrillDown = true;
 
+                    trigger OnDrillDown()
+                    begin
+                        if professorSchedule.Get(Rec."Schedule ID") then begin
+                            Page.Run(Page::"Professor Schedule", professorSchedule);
+                        end;
+                    end;
+
+                }
 
                 field("Professor"; professorName)
                 {
@@ -25,6 +38,7 @@ page 50210 "Professors' Schedule"
                         professorID: Integer;
 
                     begin
+
                         if systemCodeunit.PerformLookup(Text, 'Professor', professorID) then begin
                             if professor.Get(professorID) then begin
                                 Rec."Professor ID" := professorID;
@@ -44,7 +58,13 @@ page 50210 "Professors' Schedule"
                     var
                         subjectID: Integer;
 
+
                     begin
+                        //If the subject is selected before the professor
+                        if Rec."Professor ID" = 0 then begin
+                            Message('Select the professor first.');
+                            exit(false);
+                        end;
                         if systemCodeunit.PerformLookup(Text, 'Subject', subjectID) then begin
                             if subject.Get(subjectID) then begin
                                 Rec."Subject ID" := subject."Subject ID";
@@ -56,8 +76,6 @@ page 50210 "Professors' Schedule"
                     end;
 
                 }
-
-
 
                 field("Start Date"; Rec."Start Date")
                 {
@@ -75,7 +93,7 @@ page 50210 "Professors' Schedule"
 
     var
         systemCodeunit: Codeunit SystemCodeunit;
-        professorsSchedule: Record "Professor Schedule";
+        professorSchedule: Record "Professor Schedule";
         professor: Record Professor;
         subject: Record Subject;
         subjectName: Text[100];

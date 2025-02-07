@@ -25,7 +25,7 @@ table 50203 Subject
             DataClassification = ToBeClassified;
         }
 
-        field(50; "Department"; Enum FieldStudy)
+        field(50; "Department"; Enum Department)
         {
             DataClassification = ToBeClassified;
         }

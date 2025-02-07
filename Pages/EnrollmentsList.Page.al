@@ -11,6 +11,21 @@ page 50208 "Enrollments' List"
         {
             repeater("Enrollment Information")
             {
+
+                field("Enrollment ID";Rec."Enrollment ID")
+                {
+                    ApplicationArea = All;
+                    //Visible = false;
+
+                    DrillDown = true;
+
+                    trigger OnDrillDown()
+                    begin
+                        if enrollment.Get(Rec."Enrollment ID") then begin
+                            Page.Run(Page :: "Enrollment Card", enrollment);
+                        end;
+                    end;
+                }
                 field("Student"; studentName)
                 {
                     ApplicationArea = All;

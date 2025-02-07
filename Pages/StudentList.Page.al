@@ -15,23 +15,21 @@ page 50201 "Students' List"
                 field("Student ID"; Rec."Student ID")
                 {
                     ApplicationArea = All;
-                    Visible = false;
+//                    Visible = false;
+                    DrillDown = true;
+                    trigger OnDrillDown()
 
-
+                    begin
+                        if student.Get(Rec."Student ID") then begin
+                            Page.Run(Page::"Student Card", student);
+                        end
+                    end;                                        
 
                 }
 
                 field("First Name"; Rec."First Name")
                 {
                     ApplicationArea = All;
-                    // DrillDown = true;
-                    // trigger OnDrillDown()
-
-                    // begin
-                    //     if student.Get(Rec."Student ID") then begin
-                    //         Page.Run(Page::"Student Card", student);
-                    //     end
-                    // end;
                 }
 
                 field("Last Name"; Rec."Last Name")
@@ -71,7 +69,7 @@ page 50201 "Students' List"
                     ApplicationArea = All;
                 }
 
-                field("Field of Study"; Rec."Field of Study")
+                field("Department"; Rec."Department")
                 {
                     ApplicationArea = All;
                 }

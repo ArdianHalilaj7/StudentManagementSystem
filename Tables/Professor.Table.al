@@ -49,7 +49,7 @@ table 50202 Professor
             end;
         }
 
-        field(70; "Department"; enum FieldStudy)
+        field(70; "Department"; enum Department)
         {
             DataClassification = ToBeClassified;
 

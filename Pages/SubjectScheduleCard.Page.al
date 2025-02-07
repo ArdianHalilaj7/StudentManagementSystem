@@ -32,7 +32,7 @@ page 50214 "Subject Schedule"
                     Editable = false;
                 }
             }
-            group("Class Information")
+            group("Course Information")
             {
                 field("Start Time"; Rec."Start Time")
                 {
@@ -43,7 +43,7 @@ page 50214 "Subject Schedule"
                 {
                     ApplicationArea = All;
                 }
-                field("Day(s)"; Rec."Day(s)")
+                field("Day"; Rec."Day")
                 {
                     ApplicationArea = All;
                 }
