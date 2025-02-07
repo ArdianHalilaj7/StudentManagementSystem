@@ -9,11 +9,8 @@ page 50214 "Subject Schedule"
     {
         area(Content)
         {
-
             group("Professor")
             {
-
-
                 field("Professor Name"; systemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
                 {
                     ApplicationArea = All;
@@ -23,9 +20,6 @@ page 50214 "Subject Schedule"
             }
             group("Subject")
             {
-
-
-
                 field("Subject Name"; systemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
                 {
                     ApplicationArea = All;

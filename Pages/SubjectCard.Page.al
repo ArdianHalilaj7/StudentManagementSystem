@@ -11,12 +11,6 @@ page 50207 "Subject Card"
         {
             group("Subject Information")
             {
-                /* field(SubjectID; Rec."Subject ID")
-                {
-                     ApplicationArea = All;
-
-                 }*/
-
                 field("Subject Name"; Rec."Name")
                 {
                     ApplicationArea = All;
@@ -39,8 +33,6 @@ page 50207 "Subject Card"
                 {
                     ApplicationArea = All;
                 }
-
-
             }
         }
     }

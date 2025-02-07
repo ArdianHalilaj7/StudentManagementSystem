@@ -12,7 +12,6 @@ page 50211 "Professor Schedule"
 
             group(Professor)
             {
-
                 field("Professor Name"; systemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
                 {
                     ApplicationArea = All;
@@ -23,8 +22,6 @@ page 50211 "Professor Schedule"
 
             group(Subject)
             {
-                
-
                 field("Subject Name"; systemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
                 {
                     ApplicationArea = All;
@@ -34,8 +31,6 @@ page 50211 "Professor Schedule"
 
             group("Course Period")
             {
-
-
                 field("Start Date"; Rec."Start Date")
                 {
                     ApplicationArea = All;
