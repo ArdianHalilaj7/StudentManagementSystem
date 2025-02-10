@@ -13,7 +13,7 @@ table 50201 "Student"
         field(20; "First Name"; Text[50])
         {
             Caption = 'First Name';
-                        trigger OnValidate()
+            trigger OnValidate()
             var
                 lastChar: Text[50];
             begin
@@ -32,8 +32,8 @@ table 50201 "Student"
                 end else
                     Gender := Gender::" ";
 
-                    // Check if Emri contains 'ë' 
-                    if StrPos("First Name", 'ë') > 0 then 
+                // Check if Emri contains 'ë' 
+                if StrPos("First Name", 'ë') > 0 then
                     Message('Emri: %1 ka shkronjen "ë" dhe eshte %2', Rec."First Name", Rec.Gender);
             end;
         }
@@ -46,7 +46,7 @@ table 50201 "Student"
             Caption = 'Gender';
             DataClassification = ToBeClassified;
         }
-       
+
         field(40; "Date of Birth"; Date)
         {
             Caption = 'Date of Birth';
@@ -62,8 +62,8 @@ table 50201 "Student"
             DataClassification = ToBeClassified;
 
         }
-        
-       
+
+
         field(61; "Email"; Text[50])
         {
             Caption = 'Email';
@@ -88,13 +88,43 @@ table 50201 "Student"
             var
                 prefix: Text[14];
                 phoneNumber: Text[14];
+                validPrefixes: array[5] of Text[2];
+                areaCode: Text[2];
+                isValid: Boolean;
+                i: Integer;
             begin
                 prefix := '+383';
                 phoneNumber := Rec."Phone Number";
 
+                if CopyStr(phoneNumber, 1, 5) = '00383' then
+                    phoneNumber := CopyStr(phoneNumber, 6)
+                else if CopyStr(phoneNumber, 1, 4) = '+383' then
+                    phoneNumber := CopyStr(phoneNumber, 5)
+                else if CopyStr(phoneNumber, 1, 1) = '0' then
+                    phoneNumber := CopyStr(phoneNumber, 2)
+                else
+                    Error('Invalid phone number format. Must start with 00383, +383, or 0.');
+                validPrefixes[1] := '44';
+                validPrefixes[2] := '45';
+                validPrefixes[3] := '46';
+                validPrefixes[4] := '43';
+                validPrefixes[5] := '49';
+                areaCode := CopyStr(phoneNumber, 1, 2);
 
-                if CopyStr(phoneNumber, 1, 1) = '0' then
-                    phoneNumber := CopyStr(phoneNumber, 2);
+                 isValid := false;
+        for i := 1 to 5  do begin
+            if areaCode = validPrefixes[i] then begin
+                isValid := true;
+                break;
+            end;
+        end;
+
+        // If the area code is not valid, show an error
+        if not isValid then
+            Error('Invalid area code. Only 44, 45, 46, 48, and 49 are allowed after +383.');
+
+
+
 
 
                 Rec."Phone Number" := prefix + ' ' + phoneNumber;
@@ -129,28 +159,28 @@ table 50201 "Student"
     }
 
     local procedure CalculateAge()
-var
-    TodayDate: Date;
-    BirthYear, CurrentYear: Integer;
-    BirthMonth, CurrentMonth: Integer;
-    BirthDay, CurrentDay: Integer;
-begin
-    TodayDate := Today;
-    
-    BirthYear := Date2DMY("Date of Birth", 3);
-    BirthMonth := Date2DMY("Date of Birth", 2);
-    BirthDay := Date2DMY("Date of Birth", 1);
+    var
+        TodayDate: Date;
+        BirthYear, CurrentYear : Integer;
+        BirthMonth, CurrentMonth : Integer;
+        BirthDay, CurrentDay : Integer;
+    begin
+        TodayDate := Today;
 
-    CurrentYear := Date2DMY(TodayDate, 3);
-    CurrentMonth := Date2DMY(TodayDate, 2);
-    CurrentDay := Date2DMY(TodayDate, 1);
+        BirthYear := Date2DMY("Date of Birth", 3);
+        BirthMonth := Date2DMY("Date of Birth", 2);
+        BirthDay := Date2DMY("Date of Birth", 1);
 
-    // Calculate Age
-    Age := CurrentYear - BirthYear;
+        CurrentYear := Date2DMY(TodayDate, 3);
+        CurrentMonth := Date2DMY(TodayDate, 2);
+        CurrentDay := Date2DMY(TodayDate, 1);
 
-    // Adjust if birthday hasn't occurred yet this year
-    if (CurrentMonth < BirthMonth) or ((CurrentMonth = BirthMonth) and (CurrentDay < BirthDay)) then
-        Age := Age - 1;
-end;
+        // Calculate Age
+        Age := CurrentYear - BirthYear;
+
+        // Adjust if birthday hasn't occurred yet this year
+        if (CurrentMonth < BirthMonth) or ((CurrentMonth = BirthMonth) and (CurrentDay < BirthDay)) then
+            Age := Age - 1;
+    end;
 
 }
