@@ -85,50 +85,10 @@ table 50201 "Student"
         {
             Caption = 'Phone Number';
             trigger OnValidate()
-            var
-                prefix: Text[14];
-                phoneNumber: Text[14];
-                validPrefixes: array[5] of Text[2];
-                areaCode: Text[2];
-                isValid: Boolean;
-                i: Integer;
             begin
-                prefix := '+383';
-                phoneNumber := Rec."Phone Number";
-
-                if CopyStr(phoneNumber, 1, 5) = '00383' then
-                    phoneNumber := CopyStr(phoneNumber, 6)
-                else if CopyStr(phoneNumber, 1, 4) = '+383' then
-                    phoneNumber := CopyStr(phoneNumber, 5)
-                else if CopyStr(phoneNumber, 1, 1) = '0' then
-                    phoneNumber := CopyStr(phoneNumber, 2)
-                else
-                    Error('Invalid phone number format. Must start with 00383, +383, or 0.');
-                validPrefixes[1] := '44';
-                validPrefixes[2] := '45';
-                validPrefixes[3] := '46';
-                validPrefixes[4] := '43';
-                validPrefixes[5] := '49';
-                areaCode := CopyStr(phoneNumber, 1, 2);
-
-                 isValid := false;
-        for i := 1 to 5  do begin
-            if areaCode = validPrefixes[i] then begin
-                isValid := true;
-                break;
+                ValidatePhoneNumber(Rec."Phone Number");
             end;
-        end;
 
-        // If the area code is not valid, show an error
-        if not isValid then
-            Error('Invalid area code. Only 44, 45, 46, 48, and 49 are allowed after +383.');
-
-
-
-
-
-                Rec."Phone Number" := prefix + ' ' + phoneNumber;
-            end;
         }
         field(70; "Status"; Option)
         {
@@ -183,4 +143,46 @@ table 50201 "Student"
             Age := Age - 1;
     end;
 
+    local procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
+    var
+        prefix: Text[4];
+        //phoneNumber: Text[14];
+        validPrefixes: array[5] of Text[2];
+        areaCode: Text[2];
+        isValid: Boolean;
+        i: Integer;
+    begin
+        prefix := '+383';
+
+
+        if CopyStr(PhoneNumber, 1, 5) = '00383' then
+            PhoneNumber := CopyStr(PhoneNumber, 6)
+        else if CopyStr(PhoneNumber, 1, 4) = '+383' then
+            PhoneNumber := CopyStr(PhoneNumber, 5)
+        else if CopyStr(PhoneNumber, 1, 3) = '383' then
+            PhoneNumber := CopyStr(PhoneNumber, 4)
+        else if CopyStr(phoneNumber, 1, 1) = '0' then
+            PhoneNumber := CopyStr(PhoneNumber, 2)
+        else
+            Error('Invalid phone number. Must start with 00383, +383, or 0');
+        validPrefixes[1] := '44';
+        validPrefixes[2] := '45';
+        validPrefixes[3] := '46';
+        validPrefixes[4] := '43';
+        validPrefixes[5] := '49';
+        areaCode := CopyStr(PhoneNumber, 1, 2);
+
+        isValid := false;
+        for i := 1 to 5 do begin
+            if areaCode = validPrefixes[i] then begin
+                isValid := true;
+                break;
+            end;
+        end;
+
+        // If the area code is not valid, show an error
+        if not isValid then
+            Error('Invalid phone number. Please, make sure to put a valid number');
+        PhoneNumber := prefix + ' ' + areaCode + PhoneNumber;
+    end;
 }
