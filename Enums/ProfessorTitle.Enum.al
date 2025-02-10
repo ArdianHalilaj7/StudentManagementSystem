@@ -5,8 +5,17 @@ enum 50201 ProfessorTitle
     value(0; " ")
     {
     }
-    value(1; "Bsc"){}
-    value(2; "Msc"){}
-    value(3; "Phd"){}
+    value(1; "Bsc")
+    {
+
+    }
+    value(2; "Msc")
+    {
+
+    }
+    value(3; "Phd")
+    {
+        
+    }
 
 }

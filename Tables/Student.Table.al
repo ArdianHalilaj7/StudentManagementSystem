@@ -63,20 +63,41 @@ table 50201 "Student"
 
         }
         
-        field(50; "Email"; Text[100])
+       
+        field(61; "Email"; Text[50])
         {
             Caption = 'Email';
+            trigger OnValidate()
+            var
+                atPos: Integer;
+                dotPos: Integer;
+            begin
+
+                atPos := StrPos(Rec."Email", '@');
+                dotPos := StrPos(Rec."Email", '.');
+
+                if (atPos = 0) or (dotPos = 0) or (dotPos < atPos) then
+                    Error('Invalid email format. Please enter a valid email address (e.g., user@example.com).');
+            end;
         }
+
         field(60; "Phone Number"; Text[14])
         {
             Caption = 'Phone Number';
             trigger OnValidate()
             var
                 prefix: Text[14];
+                phoneNumber: Text[14];
             begin
                 prefix := '+383';
-                Rec."Phone Number" := prefix + Rec."Phone Number";
+                phoneNumber := Rec."Phone Number";
 
+
+                if CopyStr(phoneNumber, 1, 1) = '0' then
+                    phoneNumber := CopyStr(phoneNumber, 2);
+
+
+                Rec."Phone Number" := prefix + ' ' + phoneNumber;
             end;
         }
         field(70; "Status"; Option)

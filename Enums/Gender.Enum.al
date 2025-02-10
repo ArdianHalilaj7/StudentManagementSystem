@@ -9,5 +9,7 @@ enum 50220 Gender
     {
     }
     value(2;"Femer")
-    {}
+    {
+        
+    }
 }
