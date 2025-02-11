@@ -14,7 +14,14 @@ page 50206 "Subjects' List"
                 field(SubjectID; Rec."Subject ID")
                 {
                     ApplicationArea = All;
-                    //Visible = false;
+                    Visible = false;
+                    
+                    
+                }
+
+                field("Subject Name"; Rec."Name")
+                {
+                    ApplicationArea = All;
                     DrillDown = true;
 
                     trigger OnDrillDown()
@@ -23,12 +30,6 @@ page 50206 "Subjects' List"
                             Page.Run(Page:: "Subject Card" , subject);
                         end;
                     end;
-                    
-                }
-
-                field("Subject Name"; Rec."Name")
-                {
-                    ApplicationArea = All;
                     
 
                 }

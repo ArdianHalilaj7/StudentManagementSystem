@@ -15,8 +15,14 @@ page 50201 "Students' List"
                 field("Student ID"; Rec."Student ID")
                 {
                     ApplicationArea = All;
-//                    Visible = false;
-                    DrillDown = true;
+                    Visible = false;
+                   
+                }
+
+                field("First Name"; Rec."First Name")
+                {
+                    ApplicationArea = All;
+                     DrillDown = true;
                     trigger OnDrillDown()
 
                     begin
@@ -25,11 +31,6 @@ page 50201 "Students' List"
                         end
                     end;                                        
 
-                }
-
-                field("First Name"; Rec."First Name")
-                {
-                    ApplicationArea = All;
                 }
 
                 field("Last Name"; Rec."Last Name")

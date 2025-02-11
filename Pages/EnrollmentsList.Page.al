@@ -15,16 +15,9 @@ page 50208 "Enrollments' List"
                 field("Enrollment ID";Rec."Enrollment ID")
                 {
                     ApplicationArea = All;
-                    //Visible = false;
+                    Visible = false;
 
-                    DrillDown = true;
-
-                    trigger OnDrillDown()
-                    begin
-                        if enrollment.Get(Rec."Enrollment ID") then begin
-                            Page.Run(Page :: "Enrollment Card", enrollment);
-                        end;
-                    end;
+                   
                 }
                 field("Student"; studentName)
                 {
@@ -72,6 +65,14 @@ page 50208 "Enrollments' List"
                 field("Enrollment Date"; Rec."Enrollment Date")
                 {
                     ApplicationArea = All;
+                     DrillDown = true;
+
+                    trigger OnDrillDown()
+                    begin
+                        if enrollment.Get(Rec."Enrollment ID") then begin
+                            Page.Run(Page :: "Enrollment Card", enrollment);
+                        end;
+                    end;
                 }
 
             }

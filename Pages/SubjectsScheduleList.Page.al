@@ -14,15 +14,8 @@ page 50213 "Subjects' Schedule"
                 field("Schedule ID";Rec."Schedule ID")
                 {
                     ApplicationArea = All;
-                    //Visible = false;
-                    DrillDown = true;
-
-                    trigger OnDrillDown()
-                    begin
-                        if subjectSchedule.Get(Rec."Schedule ID") then begin
-                            Page.Run(Page:: "Subject Schedule", subjectSchedule);
-                        end;
-                    end;
+                    Visible = false;
+                    
                 }
 
 
@@ -80,6 +73,14 @@ page 50213 "Subjects' Schedule"
                 field("Start Time"; Rec."Start Time")
                 {
                     ApplicationArea = All;
+                    DrillDown = true;
+
+                    trigger OnDrillDown()
+                    begin
+                        if subjectSchedule.Get(Rec."Schedule ID") then begin
+                            Page.Run(Page:: "Subject Schedule", subjectSchedule);
+                        end;
+                    end;
                 }
 
                 field("End Time"; Rec."End Time")
