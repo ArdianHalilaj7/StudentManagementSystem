@@ -21,11 +21,15 @@ page 50217 "Professor's Courses"
                 field("Start Date"; Rec."Start Date")
                 {
                     ApplicationArea = All;
+                    Editable = false;
+
                 }
 
                 field("End Date"; Rec."End Date")
                 {
                     ApplicationArea = All;
+                    Editable = false;
+
                 }
 
             }

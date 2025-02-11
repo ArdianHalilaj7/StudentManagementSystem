@@ -16,7 +16,7 @@ page 50210 "Professors' Schedule"
                 {
                     ApplicationArea = All;
                     Visible = false;
-                    
+
 
                 }
 
@@ -104,6 +104,13 @@ page 50210 "Professors' Schedule"
     begin
         professorName := systemCodeunit.GetRecordName('Professor', Rec."Professor ID");
         subjectName := systemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean)
+    begin
+        // Clear the professor and subject names when adding a new record
+        professorName := '';
+        subjectName := '';
     end;
 
 }
