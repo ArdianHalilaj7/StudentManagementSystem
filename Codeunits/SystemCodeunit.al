@@ -124,6 +124,24 @@ codeunit 50220 SystemCodeunit
         end;
     end;
 
+    procedure CalculateCount(RecordType: Text): Integer
+    var
+        Student: Record Student;
+        Professor: Record Professor;
+        Subject: Record Subject;
+    begin
+        case RecordType of
+            'Student':
+                exit(Student.Count());
+            'Professor':
+                exit(Professor.Count());
+            'Subject':
+                exit(Subject.Count());
+        end;
+
+        exit(0);
+    end;
+
     var
 
         student: Record Student;
