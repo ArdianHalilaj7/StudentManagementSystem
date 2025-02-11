@@ -41,10 +41,6 @@ codeunit 50220 SystemCodeunit
 
             'Subject':
                 begin
-                    // If the professor ID exists (either in professorSchedule or subjectSchedule)
-                    //if (professorSchedule."Professor ID" <> 0) OR (subjectSchedule."Professor ID" <> 0) then begin
-                        // Set the range for subjects based on the professor's department
-                        
                     
                     if professor."Professor ID" <> 0 then begin
 
@@ -79,9 +75,9 @@ codeunit 50220 SystemCodeunit
 
     procedure ShowRelatedRecords(RecordType: Text; RecordID: Integer)
     var
-        professorCoursesPage: Page "Professor's Courses";
-        studentEnrollmentsPage: Page "Student Enrollments";
-        subjectStudentsPage: Page "Subject Students";
+        professorCoursesPage: Page "Professors' Schedule";
+        studentEnrollmentsPage: Page "Enrollments' List";
+        subjectStudentsPage: Page "Enrollments' List";
         professorSchedule: Record "Professor Schedule";
         enrollment: Record Enrollment;
     begin
@@ -90,7 +86,7 @@ codeunit 50220 SystemCodeunit
                 begin
                     professorSchedule.SetRange("Professor ID", RecordID);
                     if professorSchedule.IsEmpty then
-                        Message('No subject (course) is taught by professor', GetRecordName('Professor', RecordID))
+                        Message('No subject (course) is taught by professor %1', GetRecordName('Professor', RecordID))
                     else begin
                         professorCoursesPage.SetTableView(professorSchedule);
                         professorCoursesPage.RunModal();
@@ -147,7 +143,4 @@ codeunit 50220 SystemCodeunit
         student: Record Student;
         subject: Record Subject;
         professor: Record Professor;
-        enrollment: Record Enrollment;
-        professorSchedule: Record "Professor Schedule";
-        subjectSchedule: Record "Subject Schedule";
 }
