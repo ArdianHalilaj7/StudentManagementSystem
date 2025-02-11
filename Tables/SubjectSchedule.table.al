@@ -20,9 +20,9 @@ table 50206 "Subject Schedule"
             DataClassification = ToBeClassified;
         }
 
-        field(40; "Day"; Option)
+        field(40; "Day"; enum Day)
         {
-            OptionMembers = Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
+            DataClassification = ToBeClassified;
         }
 
         field(50; "Start Time"; enum SubjectScheduleStartTime)
