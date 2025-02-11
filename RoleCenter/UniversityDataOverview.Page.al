@@ -11,20 +11,38 @@ page 50221 "University Data Overview"
             {
                 field("No. of Students"; StudentsCount)
                 {
-                    DrillDown = true;
+
                     ApplicationArea = All;
                     DrillDownPageId = "Students' List";
+                    trigger OnDrillDown()
+                    var
+                        StudentsListPage: Page "Students' List";
+                    begin
+                        StudentsListPage.RunModal();
+                    end;
                 }
 
                 field("No. of Professors"; ProfessorsCount)
                 {
                     ApplicationArea = All;
                     DrillDownPageId = "Professors' List";
+                    trigger OnDrillDown()
+                    var
+                        ProfessorsListPage: Page "Professors' List";
+                    begin
+                        ProfessorsListPage.RunModal();
+                    end;
                 }
                 field("No. of Subjects"; SubjectsCount)
                 {
                     ApplicationArea = All;
                     DrillDownPageId = "Subjects' List";
+                    trigger OnDrillDown()
+                    var
+                        SubjectsListPage: Page "Subjects' List";
+                    begin
+                        SubjectsListPage.RunModal();
+                    end;
                 }
             }
 
@@ -33,7 +51,7 @@ page 50221 "University Data Overview"
 
     trigger OnOpenPage()
     var
-        SystemCodeunit : Codeunit SystemCodeunit;
+        SystemCodeunit: Codeunit SystemCodeunit;
     begin
         StudentsCount := SystemCodeunit.CalculateCount('Student');
         ProfessorsCount := SystemCodeunit.CalculateCount('Professor');

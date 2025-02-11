@@ -1,6 +1,6 @@
 profile Mirjeta 
 {
-    Description = 'University';
+    Caption = 'University';
     RoleCenter = "University Role Center";
     // Customizations = Customizations;
     Enabled = true;

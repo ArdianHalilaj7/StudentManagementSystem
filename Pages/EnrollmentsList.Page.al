@@ -12,12 +12,12 @@ page 50208 "Enrollments' List"
             repeater("Enrollment Information")
             {
 
-                field("Enrollment ID";Rec."Enrollment ID")
+                field("Enrollment ID"; Rec."Enrollment ID")
                 {
                     ApplicationArea = All;
                     Visible = false;
 
-                   
+
                 }
                 field("Student"; studentName)
                 {
@@ -65,12 +65,12 @@ page 50208 "Enrollments' List"
                 field("Enrollment Date"; Rec."Enrollment Date")
                 {
                     ApplicationArea = All;
-                     DrillDown = true;
+                    DrillDown = true;
 
                     trigger OnDrillDown()
                     begin
                         if enrollment.Get(Rec."Enrollment ID") then begin
-                            Page.Run(Page :: "Enrollment Card", enrollment);
+                            Page.Run(Page::"Enrollment Card", enrollment);
                         end;
                     end;
                 }
@@ -91,6 +91,12 @@ page 50208 "Enrollments' List"
     begin
         studentName := systemCodeunit.GetRecordName('Student', Rec."Student ID");
         subjectName := systemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean)
+    begin
+        studentName := '';
+        subjectName := '';
     end;
 
 

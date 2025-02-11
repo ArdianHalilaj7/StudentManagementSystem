@@ -11,11 +11,11 @@ page 50213 "Subjects' Schedule"
         {
             repeater("Subject Schedule")
             {
-                field("Schedule ID";Rec."Schedule ID")
+                field("Schedule ID"; Rec."Schedule ID")
                 {
                     ApplicationArea = All;
                     Visible = false;
-                    
+
                 }
 
 
@@ -78,7 +78,7 @@ page 50213 "Subjects' Schedule"
                     trigger OnDrillDown()
                     begin
                         if subjectSchedule.Get(Rec."Schedule ID") then begin
-                            Page.Run(Page:: "Subject Schedule", subjectSchedule);
+                            Page.Run(Page::"Subject Schedule", subjectSchedule);
                         end;
                     end;
                 }
@@ -104,6 +104,12 @@ page 50213 "Subjects' Schedule"
     begin
         professorName := systemCodeunit.GetRecordName('Professor', Rec."Professor ID");
         subjectName := systemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean)
+    begin
+        professorName := '';
+        subjectName := '';
     end;
 
 }
