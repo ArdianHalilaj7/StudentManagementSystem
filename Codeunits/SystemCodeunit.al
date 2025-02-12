@@ -108,7 +108,7 @@ codeunit 50220 SystemCodeunit
                 begin
                     Enrollment.SetRange("Subject ID", RecordID);
                     if Enrollment.IsEmpty then
-                        Message('There are no students enrolled in the Subject %1', GetRecordName('Subject', RecordID))
+                        Message('There are no students enrolled in the subject %1', GetRecordName('Subject', RecordID))
                     else begin
                         SubjectStudentsPage.SetTableView(Enrollment);
                         SubjectStudentsPage.RunModal();
@@ -122,9 +122,6 @@ codeunit 50220 SystemCodeunit
 
     procedure CalculateCount(RecordType: Text): Integer
     var
-        Student: Record Student;
-        Professor: Record Professor;
-        Subject: Record Subject;
     begin
         case RecordType of
             'Student':

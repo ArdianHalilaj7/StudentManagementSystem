@@ -16,8 +16,6 @@ page 50210 "Professors' Schedule"
                 {
                     ApplicationArea = All;
                     Visible = false;
-
-
                 }
 
                 field("Professor"; ProfessorName)
@@ -26,12 +24,9 @@ page 50210 "Professors' Schedule"
                     TableRelation = Professor;
 
                     trigger OnLookup(var Text: Text): Boolean
-
                     var
                         ProfessorID: Integer;
-
                     begin
-
                         if SystemCodeunit.PerformLookup(Text, 'Professor', ProfessorID) then begin
                             if Professor.Get(ProfessorID) then begin
                                 Rec."Professor ID" := ProfessorID;
@@ -47,34 +42,26 @@ page 50210 "Professors' Schedule"
                     ApplicationArea = All;
                     TableRelation = Subject;
                     trigger OnLookup(var Text: Text): Boolean
-
                     var
                         SubjectID: Integer;
-
-
                     begin
                         //If the Subject is selected before the Professor
                         if Rec."Professor ID" = 0 then begin
-                            Message('Select the Professor first.');
+                            Message('Please select the professor first.');
                             exit(false);
                         end;
                         if SystemCodeunit.PerformLookup(Text, 'Subject', SubjectID) then begin
                             if Subject.Get(SubjectID) then begin
                                 Rec."Subject ID" := Subject."Subject ID";
-
-
                             end;
                             exit(true);
                         end;
                     end;
-
                 }
-
                 field("Start Date"; Rec."Start Date")
                 {
                     ApplicationArea = All;
                     DrillDown = true;
-
                     trigger OnDrillDown()
                     begin
                         if ProfessorSchedule.Get(Rec."Schedule ID") then begin
@@ -87,7 +74,6 @@ page 50210 "Professors' Schedule"
                 {
                     ApplicationArea = All;
                 }
-
             }
         }
     }

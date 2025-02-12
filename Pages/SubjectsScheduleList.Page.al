@@ -51,7 +51,7 @@ page 50213 "Subjects' Schedule"
                     begin
                         //If the Subject is selected before the Professor
                         if Rec."Professor ID" = 0 then begin
-                            Message('Select the Professor first.');
+                            Message('Please select the professor first');
                             exit(false);
                         end;
 
