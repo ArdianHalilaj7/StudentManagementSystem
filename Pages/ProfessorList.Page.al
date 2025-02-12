@@ -47,23 +47,23 @@ page 50204 "Professors' List"
 
                 field("Phone Number"; Rec."Phone Number")
                 {
-                    ApplicationArea = All;
+                   
                     trigger OnValidate()
                     var
-                        SystemCU: Codeunit 50220;
+                        SystemCodeUnit: Codeunit 50220;
                     begin
-                        SystemCU.ValidatePhoneNumber(Rec."Phone Number");
+                        SystemCodeUnit.ValidatePhoneNumber(Rec."Phone Number");
                     end;
                 }
 
                 field(Email; Rec.Email)
                 {
-                    ApplicationArea = All;
+                    
                     trigger OnValidate()
                     var
-                        SystemCU: Codeunit 50220;
+                        SystemCodeUnit: Codeunit 50220;
                     begin
-                        SystemCU.ValidateEmail(Rec.Email);
+                        SystemCodeUnit.ValidateEmail(Rec.Email);
                     end;
                 }
 
@@ -90,4 +90,5 @@ page 50204 "Professors' List"
 
     var
         Professor: Record Professor;
+        SystemCodeUnit: Codeunit 50220;
 }

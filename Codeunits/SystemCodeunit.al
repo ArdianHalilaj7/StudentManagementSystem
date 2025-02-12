@@ -135,9 +135,10 @@ codeunit 50220 SystemCodeunit
         exit(0);
     end;
 
-    procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
+   procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
     var
         Prefix: Text[4];
+        //phoneNumber: Text[14];
         ValidPrefixes: array[5] of Text[2];
         AreaCode: Text[2];
         IsValid: Boolean;
@@ -162,17 +163,18 @@ codeunit 50220 SystemCodeunit
             Error('Invalid phone number. Must start with 00383, +383, or 0');
 
         AreaCode := CopyStr(PhoneNumber, 1, 2);
-        IsValid := false;
 
-        for i := 1 to 5 do
+        IsValid := false;
+        for i := 1 to 5 do begin
             if AreaCode = ValidPrefixes[i] then begin
                 IsValid := true;
                 break;
             end;
+        end;
 
+        // If the area code is not valid, show an error
         if not IsValid then
-            Error('Invalid phone number. Please enter a valid number.');
-
+            Error('Invalid phone number. Please, make sure to put a valid number');
         PhoneNumber := Prefix + ' ' + PhoneNumber;
     end;
 

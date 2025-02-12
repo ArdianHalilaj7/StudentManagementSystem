@@ -33,6 +33,10 @@ table 50202 Professor
         field(50; "Email"; Text[100])
         {
             DataClassification = ToBeClassified;
+            trigger OnValidate()
+            begin
+                
+            end;
 
         }
 
@@ -40,13 +44,13 @@ table 50202 Professor
         {
             Caption = 'Phone Number';
             trigger OnValidate()
-            var
-                prefix: Text[14];
-            begin
-                prefix := '+383';
-                Rec."Phone Number" := prefix + ' ' + Rec."Phone Number";
+            // var
+            //     prefix: Text[14];
+             begin
+            //     prefix := '+383';
+            //     Rec."Phone Number" := prefix + ' ' + Rec."Phone Number";
 
-            end;
+             end;
         }
 
         field(70; "Department"; enum Department)

@@ -53,12 +53,12 @@ page 50201 "Students' List"
 
                 field("Phone Number"; Rec."Phone Number")
                 {
-                    ApplicationArea = All;
+                    
                     trigger OnValidate()
                     var
-                        SystemCU: Codeunit 50220;
+                        SystemCodeUnit: Codeunit 50220;
                     begin
-                        SystemCU.ValidatePhoneNumber(Rec."Phone Number");
+                        SystemCodeUnit.ValidatePhoneNumber(Rec."Phone Number");
                     end;
                 }
                 field(Status; Rec.Status)
@@ -68,12 +68,12 @@ page 50201 "Students' List"
 
                 field(Email; Rec.Email)
                 {
-                    ApplicationArea = All;
+                    
                     trigger OnValidate()
                     var
-                        SystemCU: Codeunit 50220;
+                        SystemCodeUnit: Codeunit 50220;
                     begin
-                        SystemCU.ValidateEmail(Rec.Email);
+                        SystemCodeUnit.ValidateEmail(Rec.Email);
                     end;
                 }
 
@@ -98,6 +98,8 @@ page 50201 "Students' List"
 
     var
         Student: Record Student;
+        var
+            SystemCodeUnit: Codeunit 50220;
 
 
 }
