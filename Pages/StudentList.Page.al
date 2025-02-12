@@ -16,20 +16,20 @@ page 50201 "Students' List"
                 {
                     ApplicationArea = All;
                     Visible = false;
-                   
+
                 }
 
                 field("First Name"; Rec."First Name")
                 {
                     ApplicationArea = All;
-                     DrillDown = true;
+                    DrillDown = true;
                     trigger OnDrillDown()
 
                     begin
                         if Student.Get(Rec."Student ID") then begin
                             Page.Run(Page::"Student Card", Student);
                         end
-                    end;                                        
+                    end;
 
                 }
 
@@ -37,7 +37,7 @@ page 50201 "Students' List"
                 {
                     ApplicationArea = All;
                 }
-                field(Gender;Rec.Gender)
+                field(Gender; Rec.Gender)
                 {
                     ApplicationArea = All;
                 }
@@ -46,7 +46,7 @@ page 50201 "Students' List"
                 {
                     ApplicationArea = All;
                 }
-                field(Age;Rec.Age)
+                field(Age; Rec.Age)
                 {
                     ApplicationArea = All;
                 }
@@ -54,6 +54,12 @@ page 50201 "Students' List"
                 field("Phone Number"; Rec."Phone Number")
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+                        SystemCU: Codeunit 50220;
+                    begin
+                        SystemCU.ValidatePhoneNumber(Rec."Phone Number");
+                    end;
                 }
                 field(Status; Rec.Status)
                 {
@@ -63,6 +69,12 @@ page 50201 "Students' List"
                 field(Email; Rec.Email)
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+                        SystemCU: Codeunit 50220;
+                    begin
+                        SystemCU.ValidateEmail(Rec.Email);
+                    end;
                 }
 
                 field("Degree Level"; Rec."Degree Level")

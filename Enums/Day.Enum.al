@@ -1,4 +1,4 @@
-enum 50222 Day
+enum 50229 Day
 {
     Extensible = true;
 

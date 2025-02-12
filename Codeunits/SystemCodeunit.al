@@ -135,6 +135,59 @@ codeunit 50220 SystemCodeunit
         exit(0);
     end;
 
+    procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
+    var
+        Prefix: Text[4];
+        ValidPrefixes: array[5] of Text[2];
+        AreaCode: Text[2];
+        IsValid: Boolean;
+        i: Integer;
+    begin
+        Prefix := '+383';
+        ValidPrefixes[1] := '44';
+        ValidPrefixes[2] := '45';
+        ValidPrefixes[3] := '46';
+        ValidPrefixes[4] := '43';
+        ValidPrefixes[5] := '49';
+
+        if CopyStr(PhoneNumber, 1, 5) = '00383' then
+            PhoneNumber := CopyStr(PhoneNumber, 6)
+        else if CopyStr(PhoneNumber, 1, 4) = '+383' then
+            PhoneNumber := CopyStr(PhoneNumber, 5)
+        else if CopyStr(PhoneNumber, 1, 3) = '383' then
+            PhoneNumber := CopyStr(PhoneNumber, 4)
+        else if CopyStr(PhoneNumber, 1, 1) = '0' then
+            PhoneNumber := CopyStr(PhoneNumber, 2)
+        else
+            Error('Invalid phone number. Must start with 00383, +383, or 0');
+
+        AreaCode := CopyStr(PhoneNumber, 1, 2);
+        IsValid := false;
+
+        for i := 1 to 5 do
+            if AreaCode = ValidPrefixes[i] then begin
+                IsValid := true;
+                break;
+            end;
+
+        if not IsValid then
+            Error('Invalid phone number. Please enter a valid number.');
+
+        PhoneNumber := Prefix + ' ' + PhoneNumber;
+    end;
+
+    procedure ValidateEmail(var Email: Text)
+    var
+        atPos: Integer;
+        dotPos: Integer;
+    begin
+        atPos := StrPos(Email, '@');
+        dotPos := StrPos(Email, '.');
+
+        if (atPos = 0) or (dotPos = 0) or (dotPos < atPos) then
+            Error('Invalid email format. Please enter a valid email address (e.g., user@example.com).');
+    end;
+
     var
 
         Student: Record Student;

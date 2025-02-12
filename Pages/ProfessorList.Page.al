@@ -16,7 +16,7 @@ page 50204 "Professors' List"
                 {
                     ApplicationArea = All;
                     Visible = false;
-                    
+
 
                 }
 
@@ -48,11 +48,23 @@ page 50204 "Professors' List"
                 field("Phone Number"; Rec."Phone Number")
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+                        SystemCU: Codeunit 50220;
+                    begin
+                        SystemCU.ValidatePhoneNumber(Rec."Phone Number");
+                    end;
                 }
 
                 field(Email; Rec.Email)
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+                        SystemCU: Codeunit 50220;
+                    begin
+                        SystemCU.ValidateEmail(Rec.Email);
+                    end;
                 }
 
                 field(Department; Rec.Department)

@@ -69,7 +69,7 @@ table 50201 "Student"
             Caption = 'Email';
             trigger OnValidate()
             begin
-                ValidateEmail();
+                // ValidateEmail();
             end;
         }
 
@@ -78,7 +78,7 @@ table 50201 "Student"
             Caption = 'Phone Number';
             trigger OnValidate()
             begin
-                ValidatePhoneNumber(Rec."Phone Number");
+                // ValidatePhoneNumber(Rec."Phone Number");
             end;
 
         }
@@ -135,58 +135,58 @@ table 50201 "Student"
             Age := Age - 1;
     end;
 
-    local procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
-    var
-        Prefix: Text[4];
-        //phoneNumber: Text[14];
-        ValidPrefixes: array[5] of Text[2];
-        AreaCode: Text[2];
-        IsValid: Boolean;
-        i: Integer;
-    begin
-        Prefix := '+383';
-        ValidPrefixes[1] := '44';
-        ValidPrefixes[2] := '45';
-        ValidPrefixes[3] := '46';
-        ValidPrefixes[4] := '43';
-        ValidPrefixes[5] := '49';
+    // local procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
+    // var
+    //     Prefix: Text[4];
+    //     //phoneNumber: Text[14];
+    //     ValidPrefixes: array[5] of Text[2];
+    //     AreaCode: Text[2];
+    //     IsValid: Boolean;
+    //     i: Integer;
+    // begin
+    //     Prefix := '+383';
+    //     ValidPrefixes[1] := '44';
+    //     ValidPrefixes[2] := '45';
+    //     ValidPrefixes[3] := '46';
+    //     ValidPrefixes[4] := '43';
+    //     ValidPrefixes[5] := '49';
 
-        if CopyStr(PhoneNumber, 1, 5) = '00383' then
-            PhoneNumber := CopyStr(PhoneNumber, 6)
-        else if CopyStr(PhoneNumber, 1, 4) = '+383' then
-            PhoneNumber := CopyStr(PhoneNumber, 5)
-        else if CopyStr(PhoneNumber, 1, 3) = '383' then
-            PhoneNumber := CopyStr(PhoneNumber, 4)
-        else if CopyStr(PhoneNumber, 1, 1) = '0' then
-            PhoneNumber := CopyStr(PhoneNumber, 2)
-        else
-            Error('Invalid phone number. Must start with 00383, +383, or 0');
+    //     if CopyStr(PhoneNumber, 1, 5) = '00383' then
+    //         PhoneNumber := CopyStr(PhoneNumber, 6)
+    //     else if CopyStr(PhoneNumber, 1, 4) = '+383' then
+    //         PhoneNumber := CopyStr(PhoneNumber, 5)
+    //     else if CopyStr(PhoneNumber, 1, 3) = '383' then
+    //         PhoneNumber := CopyStr(PhoneNumber, 4)
+    //     else if CopyStr(PhoneNumber, 1, 1) = '0' then
+    //         PhoneNumber := CopyStr(PhoneNumber, 2)
+    //     else
+    //         Error('Invalid phone number. Must start with 00383, +383, or 0');
 
-        AreaCode := CopyStr(PhoneNumber, 1, 2);
+    //     AreaCode := CopyStr(PhoneNumber, 1, 2);
 
-        IsValid := false;
-        for i := 1 to 5 do begin
-            if AreaCode = ValidPrefixes[i] then begin
-                IsValid := true;
-                break;
-            end;
-        end;
+    //     IsValid := false;
+    //     for i := 1 to 5 do begin
+    //         if AreaCode = ValidPrefixes[i] then begin
+    //             IsValid := true;
+    //             break;
+    //         end;
+    //     end;
 
-        // If the area code is not valid, show an error
-        if not IsValid then
-            Error('Invalid phone number. Please, make sure to put a valid number');
-        PhoneNumber := Prefix + ' ' + PhoneNumber;
-    end;
-    local procedure ValidateEmail()
-    var
-        atPos: Integer;
-        dotPos: Integer;
-    begin
+    //     // If the area code is not valid, show an error
+    //     if not IsValid then
+    //         Error('Invalid phone number. Please, make sure to put a valid number');
+    //     PhoneNumber := Prefix + ' ' + PhoneNumber;
+    // end;
+    // local procedure ValidateEmail()
+    // var
+    //     atPos: Integer;
+    //     dotPos: Integer;
+    // begin
 
-        atPos := StrPos(Rec."Email", '@');
-        dotPos := StrPos(Rec."Email", '.');
+    //     atPos := StrPos(Rec."Email", '@');
+    //     dotPos := StrPos(Rec."Email", '.');
 
-        if (atPos = 0) or (dotPos = 0) or (dotPos < atPos) then
-            Error('Invalid email format. Please enter a valid email address (e.g., user@example.com).');
-    end;
+    //     if (atPos = 0) or (dotPos = 0) or (dotPos < atPos) then
+    //         Error('Invalid email format. Please enter a valid email address (e.g., user@example.com).');
+    // end;
 }
