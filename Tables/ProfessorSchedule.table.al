@@ -51,14 +51,6 @@ table 50205 "Professor Schedule"
         }
     }
  
-    fieldgroups
-    {
-        // Add changes to field groups here
-    }
- 
-    var
-        myInt: Integer;
- 
     trigger OnInsert()
     begin
  

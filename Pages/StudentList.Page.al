@@ -26,8 +26,8 @@ page 50201 "Students' List"
                     trigger OnDrillDown()
 
                     begin
-                        if student.Get(Rec."Student ID") then begin
-                            Page.Run(Page::"Student Card", student);
+                        if Student.Get(Rec."Student ID") then begin
+                            Page.Run(Page::"Student Card", Student);
                         end
                     end;                                        
 
@@ -84,65 +84,8 @@ page 50201 "Students' List"
         }
     }
 
-    actions
-    {
-
-    //     area(Processing)
-    //     {
-    //         action(navigate_ProfessorList)
-    //         {
-    //             ApplicationArea = All;
-    //             Caption = 'Professors';
-    //             Image = Users;
-    //             RunObject = page "Professors' List";
-    //             Promoted = true;
-    //         }
-    //         action(navigate_SubjectList)
-    //         {
-    //             ApplicationArea = All;
-    //             Caption = 'Subjects';
-    //             Image = Note;
-    //             RunObject = page "Subjects' List";
-    //         }
-    //         action(navigate_EnrollmentsList)
-    //         {
-    //             ApplicationArea = All;
-    //             Caption = 'Enrollments';
-    //             Image = Form;
-    //             RunObject = page "Enrollments' List";
-    //         }
-    //         action(navigate_ProfessorsSchedule)
-    //         {
-    //             ApplicationArea = All;
-    //             Caption = 'Professors'' Schedule';
-    //             Image = AbsenceCalendar;
-    //             RunObject = page "Professors' Schedule";
-    //         }
-
-
-    //         action(navigate_SubjectsSchedule)
-    //         {
-    //             ApplicationArea = All;
-    //             Caption = 'Subjects'' Schedule';
-    //             Image = Accounts;
-    //             RunObject = page "Subjects' Schedule";
-    //         }
-
-
-
-    //         /* action(navigate_EnrollmentCard)
-    //          {
-    //              ApplicationArea = All;
-    //              Caption = 'Enrollments'' Details';
-    //              Image = Form;
-    //              RunObject = page "Enrollment Card";
-    //          }*/
-    //     }
-
-     }
-
     var
-        student: Record Student;
+        Student: Record Student;
 
 
 }

@@ -6,25 +6,25 @@ codeunit 50220 SystemCodeunit
             RecordType of
             'Student':
                 begin
-                    if student.Get(ID) then
-                        exit(student."First Name" + ' ' + student."Last Name");
+                    if Student.Get(ID) then
+                        exit(Student."First Name" + ' ' + Student."Last Name");
                 end;
             'Subject':
                 begin
-                    if subject.Get(ID) then
-                        exit(subject.Name);
+                    if Subject.Get(ID) then
+                        exit(Subject.Name);
                 end;
             'Professor':
                 begin
-                    if professor.Get(ID) then
-                        exit(professor."First Name" + ' ' + professor."Last Name");
+                    if Professor.Get(ID) then
+                        exit(Professor."First Name" + ' ' + Professor."Last Name");
                 end;
         end;
     end;
 
     procedure PerformLookup(var Text: Text; LookUpType: Text; var ID: Integer): Boolean
     var
-        studentID: Integer;
+        StudentID: Integer;
     begin
 
         case
@@ -32,9 +32,9 @@ codeunit 50220 SystemCodeunit
 
             'Student':
                 begin
-                    if Page.RunModal(Page::"Students' List", student) = Action::LookupOK then begin
-                        Text := GetRecordName('Student', student."Student ID");
-                        ID := student."Student ID";
+                    if Page.RunModal(Page::"Students' List", Student) = Action::LookupOK then begin
+                        Text := GetRecordName('Student', Student."Student ID");
+                        ID := Student."Student ID";
                         exit(true);
                     end;
                 end;
@@ -42,16 +42,16 @@ codeunit 50220 SystemCodeunit
             'Subject':
                 begin
                     
-                    if professor."Professor ID" <> 0 then begin
+                    if Professor."Professor ID" <> 0 then begin
 
-                        subject.SetRange(Department, professor.Department);
+                        Subject.SetRange(Department, Professor.Department);
                     end;
 
-                    // Display the page for selecting a subject
-                    if Page.RunModal(Page::"Subjects' List", subject) = Action::LookupOK then begin
-                        // Get the name and set the ID based on the selected subject
-                        Text := GetRecordName('Subject', subject."Subject ID");
-                        ID := subject."Subject ID";  // Set the returned ID
+                    // Display the page for selecting a Subject
+                    if Page.RunModal(Page::"Subjects' List", Subject) = Action::LookupOK then begin
+                        // Get the name and set the ID based on the selected Subject
+                        Text := GetRecordName('Subject', Subject."Subject ID");
+                        ID := Subject."Subject ID";  // Set the returned ID
 
                         exit(true);  // Exit after successful selection
                     end;
@@ -59,9 +59,9 @@ codeunit 50220 SystemCodeunit
 
             'Professor':
                 begin
-                    if Page.RunModal(Page::"Professors' List", professor) = Action::LookupOK then begin
-                        Text := GetRecordName('Professor', professor."Professor ID");
-                        ID := professor."Professor ID";  // Set the returned ID
+                    if Page.RunModal(Page::"Professors' List", Professor) = Action::LookupOK then begin
+                        Text := GetRecordName('Professor', Professor."Professor ID");
+                        ID := Professor."Professor ID";  // Set the returned ID
 
                         exit(true);
                     end;
@@ -75,43 +75,43 @@ codeunit 50220 SystemCodeunit
 
     procedure ShowRelatedRecords(RecordType: Text; RecordID: Integer)
     var
-        professorCoursesPage: Page "Professors' Schedule";
-        studentEnrollmentsPage: Page "Enrollments' List";
-        subjectStudentsPage: Page "Enrollments' List";
-        professorSchedule: Record "Professor Schedule";
-        enrollment: Record Enrollment;
+        ProfessorCoursesPage: Page "Professors' Schedule";
+        StudentEnrollmentsPage: Page "Enrollments' List";
+        SubjectStudentsPage: Page "Enrollments' List";
+        ProfessorSchedule: Record "Professor Schedule";
+        Enrollment: Record Enrollment;
     begin
         case RecordType of
             'Professor':
                 begin
-                    professorSchedule.SetRange("Professor ID", RecordID);
-                    if professorSchedule.IsEmpty then
-                        Message('No subject (course) is taught by professor %1', GetRecordName('Professor', RecordID))
+                    ProfessorSchedule.SetRange("Professor ID", RecordID);
+                    if ProfessorSchedule.IsEmpty then
+                        Message('No Subject (course) is taught by professor %1', GetRecordName('Professor', RecordID))
                     else begin
-                        professorCoursesPage.SetTableView(professorSchedule);
-                        professorCoursesPage.RunModal();
+                        ProfessorCoursesPage.SetTableView(ProfessorSchedule);
+                        ProfessorCoursesPage.RunModal();
                     end;
                 end;
 
             'Student':
                 begin
-                    enrollment.SetRange("Student ID", RecordID);
-                    if enrollment.IsEmpty then
+                    Enrollment.SetRange("Student ID", RecordID);
+                    if Enrollment.IsEmpty then
                         Message('Student %1 has no enrollments in any subject (course)', GetRecordName('Student', RecordID))
                     else begin
-                        studentEnrollmentsPage.SetTableView(enrollment);
-                        studentEnrollmentsPage.RunModal();
+                        StudentEnrollmentsPage.SetTableView(Enrollment);
+                        StudentEnrollmentsPage.RunModal();
                     end;
                 end;
 
             'Subject':
                 begin
-                    enrollment.SetRange("Subject ID", RecordID);
-                    if enrollment.IsEmpty then
-                        Message('There are no students enrolled in the subject %1', GetRecordName('Subject', RecordID))
+                    Enrollment.SetRange("Subject ID", RecordID);
+                    if Enrollment.IsEmpty then
+                        Message('There are no students enrolled in the Subject %1', GetRecordName('Subject', RecordID))
                     else begin
-                        subjectStudentsPage.SetTableView(enrollment);
-                        subjectStudentsPage.RunModal();
+                        SubjectStudentsPage.SetTableView(Enrollment);
+                        SubjectStudentsPage.RunModal();
                     end;
                 end;
 
@@ -140,7 +140,7 @@ codeunit 50220 SystemCodeunit
 
     var
 
-        student: Record Student;
-        subject: Record Subject;
-        professor: Record Professor;
+        Student: Record Student;
+        Subject: Record Subject;
+        Professor: Record Professor;
 }

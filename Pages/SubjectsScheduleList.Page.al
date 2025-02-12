@@ -19,7 +19,7 @@ page 50213 "Subjects' Schedule"
                 }
 
 
-                field("Professor"; professorName)
+                field("Professor"; ProfessorName)
                 {
                     ApplicationArea = All;
                     TableRelation = Professor;
@@ -27,37 +27,37 @@ page 50213 "Subjects' Schedule"
                     trigger OnLookup(var Text: Text): Boolean
 
                     var
-                        professorID: Integer;
+                        ProfessorID: Integer;
 
                     begin
-                        if systemCodeunit.PerformLookup(Text, 'Professor', professorID) then begin
-                            if professor.Get(professorID) then begin
-                                Rec."Professor ID" := professorID;
+                        if SystemCodeunit.PerformLookup(Text, 'Professor', ProfessorID) then begin
+                            if Professor.Get(ProfessorID) then begin
+                                Rec."Professor ID" := ProfessorID;
                             end;
                             exit(true);
                         end;
                     end;
                 }
 
-                field("Subject"; subjectName)
+                field("Subject"; SubjectName)
                 {
                     ApplicationArea = All;
                     TableRelation = Subject;
                     trigger OnLookup(var Text: Text): Boolean
 
                     var
-                        subjectID: Integer;
+                        SubjectID: Integer;
 
                     begin
-                        //If the subject is selected before the professor
+                        //If the Subject is selected before the Professor
                         if Rec."Professor ID" = 0 then begin
-                            Message('Select the professor first.');
+                            Message('Select the Professor first.');
                             exit(false);
                         end;
 
-                        if systemCodeunit.PerformLookup(Text, 'Subject', subjectID) then begin
-                            if subject.Get(subjectID) then begin
-                                Rec."Subject ID" := subject."Subject ID";
+                        if SystemCodeunit.PerformLookup(Text, 'Subject', SubjectID) then begin
+                            if Subject.Get(SubjectID) then begin
+                                Rec."Subject ID" := Subject."Subject ID";
                             end;
                             exit(true);
                         end;
@@ -77,8 +77,8 @@ page 50213 "Subjects' Schedule"
 
                     trigger OnDrillDown()
                     begin
-                        if subjectSchedule.Get(Rec."Schedule ID") then begin
-                            Page.Run(Page::"Subject Schedule", subjectSchedule);
+                        if SubjectSchedule.Get(Rec."Schedule ID") then begin
+                            Page.Run(Page::"Subject Schedule", SubjectSchedule);
                         end;
                     end;
                 }
@@ -92,24 +92,24 @@ page 50213 "Subjects' Schedule"
     }
 
     var
-        systemCodeunit: Codeunit SystemCodeunit;
-        subjectSchedule: Record "Subject Schedule";
-        student: Record Student;
-        professor: Record Professor;
-        subject: Record Subject;
-        subjectName: Text[100];
-        professorName: Text[100];
+        SystemCodeunit: Codeunit SystemCodeunit;
+        SubjectSchedule: Record "Subject Schedule";
+        Student: Record Student;
+        Professor: Record Professor;
+        Subject: Record Subject;
+        SubjectName: Text[100];
+        ProfessorName: Text[100];
 
     trigger OnAfterGetRecord()
     begin
-        professorName := systemCodeunit.GetRecordName('Professor', Rec."Professor ID");
-        subjectName := systemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+        ProfessorName := SystemCodeunit.GetRecordName('Professor', Rec."Professor ID");
+        SubjectName := SystemCodeunit.GetRecordName('Subject', Rec."Subject ID");
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        professorName := '';
-        subjectName := '';
+        ProfessorName := '';
+        SubjectName := '';
     end;
 
 }

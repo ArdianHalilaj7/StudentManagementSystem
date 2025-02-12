@@ -20,7 +20,7 @@ page 50210 "Professors' Schedule"
 
                 }
 
-                field("Professor"; professorName)
+                field("Professor"; ProfessorName)
                 {
                     ApplicationArea = All;
                     TableRelation = Professor;
@@ -28,13 +28,13 @@ page 50210 "Professors' Schedule"
                     trigger OnLookup(var Text: Text): Boolean
 
                     var
-                        professorID: Integer;
+                        ProfessorID: Integer;
 
                     begin
 
-                        if systemCodeunit.PerformLookup(Text, 'Professor', professorID) then begin
-                            if professor.Get(professorID) then begin
-                                Rec."Professor ID" := professorID;
+                        if SystemCodeunit.PerformLookup(Text, 'Professor', ProfessorID) then begin
+                            if Professor.Get(ProfessorID) then begin
+                                Rec."Professor ID" := ProfessorID;
                             end;
                             exit(true);
                         end;
@@ -42,25 +42,25 @@ page 50210 "Professors' Schedule"
                 }
 
 
-                field("Subject"; subjectName)
+                field("Subject"; SubjectName)
                 {
                     ApplicationArea = All;
                     TableRelation = Subject;
                     trigger OnLookup(var Text: Text): Boolean
 
                     var
-                        subjectID: Integer;
+                        SubjectID: Integer;
 
 
                     begin
-                        //If the subject is selected before the professor
+                        //If the Subject is selected before the Professor
                         if Rec."Professor ID" = 0 then begin
-                            Message('Select the professor first.');
+                            Message('Select the Professor first.');
                             exit(false);
                         end;
-                        if systemCodeunit.PerformLookup(Text, 'Subject', subjectID) then begin
-                            if subject.Get(subjectID) then begin
-                                Rec."Subject ID" := subject."Subject ID";
+                        if SystemCodeunit.PerformLookup(Text, 'Subject', SubjectID) then begin
+                            if Subject.Get(SubjectID) then begin
+                                Rec."Subject ID" := Subject."Subject ID";
 
 
                             end;
@@ -77,8 +77,8 @@ page 50210 "Professors' Schedule"
 
                     trigger OnDrillDown()
                     begin
-                        if professorSchedule.Get(Rec."Schedule ID") then begin
-                            Page.Run(Page::"Professor Schedule", professorSchedule);
+                        if ProfessorSchedule.Get(Rec."Schedule ID") then begin
+                            Page.Run(Page::"Professor Schedule", ProfessorSchedule);
                         end;
                     end;
                 }
@@ -93,24 +93,24 @@ page 50210 "Professors' Schedule"
     }
 
     var
-        systemCodeunit: Codeunit SystemCodeunit;
-        professorSchedule: Record "Professor Schedule";
-        professor: Record Professor;
-        subject: Record Subject;
-        subjectName: Text[100];
-        professorName: Text[100];
+        SystemCodeunit: Codeunit SystemCodeunit;
+        ProfessorSchedule: Record "Professor Schedule";
+        Professor: Record Professor;
+        Subject: Record Subject;
+        SubjectName: Text[100];
+        ProfessorName: Text[100];
 
     trigger OnAfterGetRecord()
     begin
-        professorName := systemCodeunit.GetRecordName('Professor', Rec."Professor ID");
-        subjectName := systemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+        ProfessorName := SystemCodeunit.GetRecordName('Professor', Rec."Professor ID");
+        SubjectName := SystemCodeunit.GetRecordName('Subject', Rec."Subject ID");
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        // Clear the professor and subject names when adding a new record
-        professorName := '';
-        subjectName := '';
+        // Clear the Professor and Subject names when adding a new record
+        ProfessorName := '';
+        SubjectName := '';
     end;
 
 }

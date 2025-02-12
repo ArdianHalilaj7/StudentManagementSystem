@@ -73,12 +73,12 @@ page 50205 "Professor Card"
                 Image = View;
                 trigger OnAction()
                 begin
-                    systemCodeunit.ShowRelatedRecords('Professor', Rec."Professor ID");
+                    SystemCodeunit.ShowRelatedRecords('Professor', Rec."Professor ID");
                 end;
 
             }
         }
     }
     var
-        systemCodeunit: Codeunit SystemCodeunit;
+        SystemCodeunit: Codeunit SystemCodeunit;
 }

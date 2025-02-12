@@ -12,7 +12,7 @@ page 50211 "Professor Schedule"
 
             group(Professor)
             {
-                field("Professor Name"; systemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
+                field("Professor Name"; SystemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -22,7 +22,7 @@ page 50211 "Professor Schedule"
 
             group(Subject)
             {
-                field("Subject Name"; systemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
+                field("Subject Name"; SystemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -46,6 +46,6 @@ page 50211 "Professor Schedule"
 
 
     var
-        systemCodeunit: Codeunit SystemCodeunit;
+        SystemCodeunit: Codeunit SystemCodeunit;
 
 }

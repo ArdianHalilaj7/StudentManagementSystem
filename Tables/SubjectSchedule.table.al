@@ -47,15 +47,6 @@ table 50206 "Subject Schedule"
             Clustered = false;
         }
     }
-
-    fieldgroups
-    {
-        // Add changes to field groups here
-    }
-
-    var
-        myInt: Integer;
-
     trigger OnInsert()
     begin
 

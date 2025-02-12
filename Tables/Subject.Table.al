@@ -40,13 +40,7 @@ table 50203 Subject
         
     }
 
-    // fieldgroups
-    // {
-    //     // Add changes to field groups here
-    // }
 
-    // var
-    //     myInt: Integer;
 
     trigger OnInsert()
     begin

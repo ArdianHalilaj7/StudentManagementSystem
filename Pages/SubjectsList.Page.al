@@ -26,8 +26,8 @@ page 50206 "Subjects' List"
 
                     trigger OnDrillDown()
                     begin
-                        if subject.Get(Rec."Subject ID") then begin
-                            Page.Run(Page:: "Subject Card" , subject);
+                        if Subject.Get(Rec."Subject ID") then begin
+                            Page.Run(Page:: "Subject Card" , Subject);
                         end;
                     end;
                     
@@ -59,5 +59,5 @@ page 50206 "Subjects' List"
 
 
     var
-        subject: Record Subject;
+        Subject: Record Subject;
 }

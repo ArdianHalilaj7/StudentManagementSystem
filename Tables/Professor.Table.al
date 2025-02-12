@@ -79,14 +79,6 @@ table 50202 Professor
         key(PK; "Professor ID") { Clustered = true;}
     }
 
-    fieldgroups
-    {
-        // Add changes to field groups here
-    }
-
-    var
-        myInt: Integer;
-
     trigger OnInsert()
     begin
 

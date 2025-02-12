@@ -46,13 +46,6 @@ table 50204 Enrollment
 
 
 
-    // fieldgroups
-    // {
-    //     // Add changes to field groups here
-    // }
-
-    // var
-    //     myInt: Integer;
 
     trigger OnInsert()
     begin

@@ -137,19 +137,19 @@ table 50201 "Student"
 
     local procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
     var
-        prefix: Text[4];
+        Prefix: Text[4];
         //phoneNumber: Text[14];
-        validPrefixes: array[5] of Text[2];
-        areaCode: Text[2];
-        isValid: Boolean;
+        ValidPrefixes: array[5] of Text[2];
+        AreaCode: Text[2];
+        IsValid: Boolean;
         i: Integer;
     begin
-        prefix := '+383';
-        validPrefixes[1] := '44';
-        validPrefixes[2] := '45';
-        validPrefixes[3] := '46';
-        validPrefixes[4] := '43';
-        validPrefixes[5] := '49';
+        Prefix := '+383';
+        ValidPrefixes[1] := '44';
+        ValidPrefixes[2] := '45';
+        ValidPrefixes[3] := '46';
+        ValidPrefixes[4] := '43';
+        ValidPrefixes[5] := '49';
 
         if CopyStr(PhoneNumber, 1, 5) = '00383' then
             PhoneNumber := CopyStr(PhoneNumber, 6)
@@ -157,25 +157,25 @@ table 50201 "Student"
             PhoneNumber := CopyStr(PhoneNumber, 5)
         else if CopyStr(PhoneNumber, 1, 3) = '383' then
             PhoneNumber := CopyStr(PhoneNumber, 4)
-        else if CopyStr(phoneNumber, 1, 1) = '0' then
+        else if CopyStr(PhoneNumber, 1, 1) = '0' then
             PhoneNumber := CopyStr(PhoneNumber, 2)
         else
             Error('Invalid phone number. Must start with 00383, +383, or 0');
 
-        areaCode := CopyStr(PhoneNumber, 1, 2);
+        AreaCode := CopyStr(PhoneNumber, 1, 2);
 
-        isValid := false;
+        IsValid := false;
         for i := 1 to 5 do begin
-            if areaCode = validPrefixes[i] then begin
-                isValid := true;
+            if AreaCode = ValidPrefixes[i] then begin
+                IsValid := true;
                 break;
             end;
         end;
 
         // If the area code is not valid, show an error
-        if not isValid then
+        if not IsValid then
             Error('Invalid phone number. Please, make sure to put a valid number');
-        PhoneNumber := prefix + ' ' + PhoneNumber;
+        PhoneNumber := Prefix + ' ' + PhoneNumber;
     end;
     local procedure ValidateEmail()
     var

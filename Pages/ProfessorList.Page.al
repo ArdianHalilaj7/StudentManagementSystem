@@ -28,7 +28,7 @@ page 50204 "Professors' List"
                     trigger OnDrillDown()
 
                     begin
-                        if professor.Get(rec."Professor ID") then begin
+                        if Professor.Get(rec."Professor ID") then begin
                             Page.Run(Page::"Professor Card", professor);
                         end;
                     end;
@@ -77,5 +77,5 @@ page 50204 "Professors' List"
     }
 
     var
-        professor: Record Professor;
+        Professor: Record Professor;
 }

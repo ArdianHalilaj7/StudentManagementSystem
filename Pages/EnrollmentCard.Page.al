@@ -41,6 +41,5 @@ page 50209 "Enrollment Card"
     }
 
     var
-        systemCodeunit: Codeunit SystemCodeunit;
-        enrollment: Record Enrollment;
+        SystemCodeunit: Codeunit SystemCodeunit;
 }

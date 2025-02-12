@@ -49,12 +49,12 @@ page 50207 "Subject Card"
                 trigger OnAction()
                 
                 begin
-                    systemCodeunit.ShowRelatedRecords('Subject', Rec."Subject ID");
+                    SystemCodeunit.ShowRelatedRecords('Subject', Rec."Subject ID");
                 end;
 
             }
         }
     }
     var
-        systemCodeunit: Codeunit SystemCodeunit;
+        SystemCodeunit: Codeunit SystemCodeunit;
 }

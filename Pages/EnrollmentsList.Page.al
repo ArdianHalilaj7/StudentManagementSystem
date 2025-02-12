@@ -29,7 +29,7 @@ page 50208 "Enrollments' List"
                         studentID: Integer;
 
                     begin
-                        if systemCodeunit.PerformLookup(Text, 'Student', studentID) then begin
+                        if SystemCodeunit.PerformLookup(Text, 'Student', studentID) then begin
                             if student.Get(studentID) then begin
                                 Rec."Student ID" := student."Student ID";
                             end;
@@ -40,19 +40,19 @@ page 50208 "Enrollments' List"
 
                 }
 
-                field("Subject"; subjectName)
+                field("Subject"; SubjectName)
                 {
                     ApplicationArea = All;
                     TableRelation = Subject;
                     trigger OnLookup(var Text: Text): Boolean
 
                     var
-                        subjectID: Integer;
+                        SubjectID: Integer;
 
                     begin
-                        if systemCodeunit.PerformLookup(Text, 'Subject', subjectID) then begin
-                            if subject.Get(subjectID) then begin
-                                Rec."Subject ID" := subject."Subject ID";
+                        if SystemCodeunit.PerformLookup(Text, 'Subject', SubjectID) then begin
+                            if Subject.Get(SubjectID) then begin
+                                Rec."Subject ID" := Subject."Subject ID";
 
 
                             end;
@@ -69,8 +69,8 @@ page 50208 "Enrollments' List"
 
                     trigger OnDrillDown()
                     begin
-                        if enrollment.Get(Rec."Enrollment ID") then begin
-                            Page.Run(Page::"Enrollment Card", enrollment);
+                        if Enrollment.Get(Rec."Enrollment ID") then begin
+                            Page.Run(Page::"Enrollment Card", Enrollment);
                         end;
                     end;
                 }
@@ -80,23 +80,23 @@ page 50208 "Enrollments' List"
     }
 
     var
-        systemCodeunit: Codeunit SystemCodeunit;
-        enrollment: Record "Enrollment";
-        student: Record Student;
-        subject: Record Subject;
-        subjectName: Text[100];
-        studentName: Text[100];
+        SystemCodeunit: Codeunit SystemCodeunit;
+        Enrollment: Record "Enrollment";
+        Student: Record Student;
+        Subject: Record Subject;
+        SubjectName: Text[100];
+        StudentName: Text[100];
 
     trigger OnAfterGetRecord()
     begin
-        studentName := systemCodeunit.GetRecordName('Student', Rec."Student ID");
-        subjectName := systemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+        StudentName := SystemCodeunit.GetRecordName('Student', Rec."Student ID");
+        SubjectName := SystemCodeunit.GetRecordName('Subject', Rec."Subject ID");
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        studentName := '';
-        subjectName := '';
+        StudentName := '';
+        SubjectName := '';
     end;
 
 

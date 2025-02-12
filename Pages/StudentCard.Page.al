@@ -82,12 +82,12 @@ page 50203 "Student Card"
                 Image = View;
                 trigger OnAction()
                 begin
-                    systemCodeunit.ShowRelatedRecords('Student', Rec."Student ID");
+                    SystemCodeunit.ShowRelatedRecords('Student', Rec."Student ID");
                 end;
             }
         }
     }
 
     var
-        systemCodeunit: Codeunit SystemCodeunit;
+        SystemCodeunit: Codeunit SystemCodeunit;
 }
