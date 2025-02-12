@@ -10,15 +10,20 @@ page 50218 "University Role Center"
         {
             group(Group1)
             {
-                part(part1; RoleCenterHeadline) 
+                part(part1; RoleCenterHeadline)
                 {
-                    
+
                     ApplicationArea = All;
                 }
             }
             group(Information)
             {
                 part("University Data"; "University Data Overview")
+                {
+                    ApplicationArea = All;
+                }
+
+                part("Active Students"; "Active Students")
                 {
                     ApplicationArea = All;
                 }
