@@ -68,16 +68,8 @@ table 50201 "Student"
         {
             Caption = 'Email';
             trigger OnValidate()
-            var
-                atPos: Integer;
-                dotPos: Integer;
             begin
-
-                atPos := StrPos(Rec."Email", '@');
-                dotPos := StrPos(Rec."Email", '.');
-
-                if (atPos = 0) or (dotPos = 0) or (dotPos < atPos) then
-                    Error('Invalid email format. Please enter a valid email address (e.g., user@example.com).');
+                ValidateEmail();
             end;
         }
 
@@ -153,7 +145,11 @@ table 50201 "Student"
         i: Integer;
     begin
         prefix := '+383';
-
+        validPrefixes[1] := '44';
+        validPrefixes[2] := '45';
+        validPrefixes[3] := '46';
+        validPrefixes[4] := '43';
+        validPrefixes[5] := '49';
 
         if CopyStr(PhoneNumber, 1, 5) = '00383' then
             PhoneNumber := CopyStr(PhoneNumber, 6)
@@ -165,11 +161,7 @@ table 50201 "Student"
             PhoneNumber := CopyStr(PhoneNumber, 2)
         else
             Error('Invalid phone number. Must start with 00383, +383, or 0');
-        validPrefixes[1] := '44';
-        validPrefixes[2] := '45';
-        validPrefixes[3] := '46';
-        validPrefixes[4] := '43';
-        validPrefixes[5] := '49';
+
         areaCode := CopyStr(PhoneNumber, 1, 2);
 
         isValid := false;
@@ -183,6 +175,18 @@ table 50201 "Student"
         // If the area code is not valid, show an error
         if not isValid then
             Error('Invalid phone number. Please, make sure to put a valid number');
-        PhoneNumber := prefix + ' ' + areaCode + PhoneNumber;
+        PhoneNumber := prefix + ' ' + PhoneNumber;
+    end;
+    local procedure ValidateEmail()
+    var
+        atPos: Integer;
+        dotPos: Integer;
+    begin
+
+        atPos := StrPos(Rec."Email", '@');
+        dotPos := StrPos(Rec."Email", '.');
+
+        if (atPos = 0) or (dotPos = 0) or (dotPos < atPos) then
+            Error('Invalid email format. Please enter a valid email address (e.g., user@example.com).');
     end;
 }
