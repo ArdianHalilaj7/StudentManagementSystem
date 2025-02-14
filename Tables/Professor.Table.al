@@ -34,23 +34,21 @@ table 50202 Professor
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
+            var
             begin
-                
+                SystemCodeUnit.ValidateEmail(Rec.Email);
             end;
 
         }
 
-       field(60; "Phone Number"; Text[14])
+        field(60; "Phone Number"; Text[14])
         {
             Caption = 'Phone Number';
             trigger OnValidate()
-            // var
-            //     prefix: Text[14];
-             begin
-            //     prefix := '+383';
-            //     Rec."Phone Number" := prefix + ' ' + Rec."Phone Number";
-
-             end;
+            var
+            begin
+                SystemCodeUnit.ValidatePhoneNumber(Rec."Phone Number");
+            end;
         }
 
         field(70; "Department"; enum Department)
@@ -80,7 +78,7 @@ table 50202 Professor
 
     keys
     {
-        key(PK; "Professor ID") { Clustered = true;}
+        key(PK; "Professor ID") { Clustered = true; }
     }
 
     trigger OnInsert()
@@ -103,4 +101,6 @@ table 50202 Professor
 
     end;
 
+    var
+        SystemCodeunit: Codeunit SystemCodeunit;
 }

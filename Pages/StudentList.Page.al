@@ -53,13 +53,7 @@ page 50201 "Students' List"
 
                 field("Phone Number"; Rec."Phone Number")
                 {
-                    
-                    trigger OnValidate()
-                    var
-                        SystemCodeUnit: Codeunit 50220;
-                    begin
-                        SystemCodeUnit.ValidatePhoneNumber(Rec."Phone Number");
-                    end;
+                    ApplicationArea = All;
                 }
                 field(Status; Rec.Status)
                 {
@@ -68,13 +62,7 @@ page 50201 "Students' List"
 
                 field(Email; Rec.Email)
                 {
-                    
-                    trigger OnValidate()
-                    var
-                        SystemCodeUnit: Codeunit 50220;
-                    begin
-                        SystemCodeUnit.ValidateEmail(Rec.Email);
-                    end;
+                    ApplicationArea = All;
                 }
 
                 field("Degree Level"; Rec."Degree Level")
@@ -98,8 +86,4 @@ page 50201 "Students' List"
 
     var
         Student: Record Student;
-        var
-            SystemCodeUnit: Codeunit 50220;
-
-
 }
