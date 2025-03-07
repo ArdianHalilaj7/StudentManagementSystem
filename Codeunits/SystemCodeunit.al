@@ -1,6 +1,10 @@
 codeunit 50220 SystemCodeunit
 {
     procedure GetRecordName(RecordType: Text; ID: Integer): Text[100]
+    var
+        Student: Record Student;
+        Subject: Record Subject;
+        Professor: Record Professor;
     begin
         case
             RecordType of
@@ -24,6 +28,9 @@ codeunit 50220 SystemCodeunit
 
     procedure PerformLookup(var Text: Text; LookUpType: Text; var ID: Integer): Boolean
     var
+        Student: Record Student;
+        Subject: Record Subject;
+        Professor: Record Professor;
         StudentID: Integer;
     begin
 
@@ -76,10 +83,10 @@ codeunit 50220 SystemCodeunit
     procedure ShowRelatedRecords(RecordType: Text; RecordID: Integer)
     var
         ProfessorCoursesPage: Page "Professors' Schedule";
-        StudentEnrollmentsPage: Page "Enrollments' List";
-        SubjectStudentsPage: Page "Enrollments' List";
-        ProfessorSchedule: Record "Professor Schedule";
-        Enrollment: Record Enrollment;
+                                  StudentEnrollmentsPage: Page "Enrollments' List";
+                                  SubjectStudentsPage: Page "Enrollments' List";
+                                  ProfessorSchedule: Record "Professor Schedule";
+                                  Enrollment: Record Enrollment;
     begin
         case RecordType of
             'Professor':
@@ -122,6 +129,9 @@ codeunit 50220 SystemCodeunit
 
     procedure CalculateCount(RecordType: Text): Integer
     var
+        Student: Record Student;
+        Subject: Record Subject;
+        Professor: Record Professor;
     begin
         case RecordType of
             'Student':
@@ -178,7 +188,7 @@ codeunit 50220 SystemCodeunit
         PhoneNumber := Prefix + ' ' + PhoneNumber;
     end;
 
-    procedure ValidateEmail(var Email: Text)
+    procedure ValidateEmail(Email: Text)
     var
         atPos: Integer;
         dotPos: Integer;
@@ -189,10 +199,4 @@ codeunit 50220 SystemCodeunit
         if (atPos = 0) or (dotPos = 0) or (dotPos < atPos) then
             Error('Invalid email format. Please enter a valid email address (e.g., user@example.com).');
     end;
-
-    var
-
-        Student: Record Student;
-        Subject: Record Subject;
-        Professor: Record Professor;
 }

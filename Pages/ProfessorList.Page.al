@@ -16,20 +16,18 @@ page 50204 "Professors' List"
                 {
                     ApplicationArea = All;
                     Visible = false;
-
-
                 }
-
                 field("First Name"; Rec."First Name")
                 {
                     ApplicationArea = All;
                     DrillDown = true;
 
                     trigger OnDrillDown()
-
+                    var
+                        Professor: Record Professor;
                     begin
                         if Professor.Get(rec."Professor ID") then begin
-                            Page.Run(Page::"Professor Card", professor);
+                            Page.Run(Page::"Professor Card", Professor);
                         end;
                     end;
 
@@ -47,48 +45,34 @@ page 50204 "Professors' List"
 
                 field("Phone Number"; Rec."Phone Number")
                 {
-                   
-                    trigger OnValidate()
-                    var
-                        SystemCodeUnit: Codeunit 50220;
-                    begin
-                        SystemCodeUnit.ValidatePhoneNumber(Rec."Phone Number");
-                    end;
-                }
+                    ApplicationArea = All;
+                }   
 
                 field(Email; Rec.Email)
                 {
-                    
-                    trigger OnValidate()
-                    var
-                        SystemCodeUnit: Codeunit 50220;
-                    begin
-                        SystemCodeUnit.ValidateEmail(Rec.Email);
-                    end;
+                    ApplicationArea = All;
                 }
 
                 field(Department; Rec.Department)
                 {
                     ApplicationArea = All;
                 }
+
                 field("Position/Title"; Rec."Position/Title")
                 {
                     ApplicationArea = All;
                 }
+
                 field("Office Address"; Rec."Office Address")
                 {
                     ApplicationArea = All;
                 }
+                
                 field("Office Hours"; Rec."Office Hours")
                 {
                     ApplicationArea = All;
                 }
-
             }
         }
     }
-
-    var
-        Professor: Record Professor;
-        SystemCodeUnit: Codeunit 50220;
 }

@@ -8,25 +8,21 @@ page 50218 "University Role Center"
     {
         area(RoleCenter)
         {
-            group(Group1)
+            part(part1; RoleCenterHeadline)
             {
-                part(part1; RoleCenterHeadline)
-                {
-
-                    ApplicationArea = All;
-                }
+                ApplicationArea = All;
             }
-            group(Information)
+            part("University Data"; "University Data Overview")
             {
-                part("University Data"; "University Data Overview")
-                {
-                    ApplicationArea = All;
-                }
-
-                part("Active Students"; "Active Students")
-                {
-                    ApplicationArea = All;
-                }
+                ApplicationArea = All;
+            }
+            part(UniversitySegmentation; StudentsChart)
+            {
+                ApplicationArea = All;
+            }
+            part("Active Students"; "Active Students")
+            {
+                ApplicationArea = All;
             }
         }
     }
@@ -35,8 +31,6 @@ page 50218 "University Role Center"
     {
         area(Embedding)
         {
-
-
             action("Students")
             {
                 ApplicationArea = All;

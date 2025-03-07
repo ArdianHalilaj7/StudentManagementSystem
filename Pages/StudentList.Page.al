@@ -16,21 +16,19 @@ page 50201 "Students' List"
                 {
                     ApplicationArea = All;
                     Visible = false;
-
                 }
-
                 field("First Name"; Rec."First Name")
                 {
                     ApplicationArea = All;
                     DrillDown = true;
                     trigger OnDrillDown()
-
+                    var
+                        Student: Record Student;
                     begin
                         if Student.Get(Rec."Student ID") then begin
                             Page.Run(Page::"Student Card", Student);
                         end
                     end;
-
                 }
 
                 field("Last Name"; Rec."Last Name")
@@ -46,6 +44,7 @@ page 50201 "Students' List"
                 {
                     ApplicationArea = All;
                 }
+                
                 field(Age; Rec.Age)
                 {
                     ApplicationArea = All;
@@ -84,6 +83,4 @@ page 50201 "Students' List"
         }
     }
 
-    var
-        Student: Record Student;
 }

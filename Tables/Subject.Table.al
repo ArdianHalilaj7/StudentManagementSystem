@@ -1,7 +1,6 @@
 table 50203 Subject
 {
     DataClassification = ToBeClassified;
-
     fields
     {
         field(10; "Subject ID"; Integer)
@@ -31,35 +30,8 @@ table 50203 Subject
         }
 
     }
-
     keys
     {
         key("PK"; "Subject ID"){ Clustered = true;}
-        
-            
-        
     }
-
-
-
-    trigger OnInsert()
-    begin
-
-    end;
-
-    trigger OnModify()
-    begin
-
-    end;
-
-    trigger OnDelete()
-    begin
-
-    end;
-
-    trigger OnRename()
-    begin
-
-    end;
-
 }

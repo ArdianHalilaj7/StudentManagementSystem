@@ -10,6 +10,7 @@ table 50201 "Student"
             AutoIncrement = true;
             Caption = 'Student ID';
         }
+
         field(20; "First Name"; Text[50])
         {
             Caption = 'First Name';
@@ -31,21 +32,23 @@ table 50201 "Student"
                     end;
                 end else
                     Gender := Gender::" ";
-
                 // Check if Emri contains 'ë' 
                 if StrPos("First Name", 'ë') > 0 then
                     Message('Emri: %1 ka shkronjen "ë" dhe eshte %2', Rec."First Name", Rec.Gender);
             end;
         }
+
         field(30; "Last Name"; Text[50])
         {
             Caption = 'Last Name';
         }
+
         field(31; Gender; Enum Gender)
         {
             Caption = 'Gender';
             DataClassification = ToBeClassified;
         }
+
 
         field(40; "Date of Birth"; Date)
         {
@@ -60,18 +63,11 @@ table 50201 "Student"
         {
             Caption = 'Age';
             DataClassification = ToBeClassified;
-
         }
-
 
         field(61; "Email"; Text[50])
         {
             Caption = 'Email';
-            trigger OnValidate()
-            var
-            begin
-                SystemCodeUnit.ValidateEmail(Rec.Email);
-            end;
         }
 
         field(60; "Phone Number"; Text[14])
@@ -79,11 +75,13 @@ table 50201 "Student"
             Caption = 'Phone Number';
             trigger OnValidate()
             var
+                SystemCodeunit: Codeunit SystemCodeunit;
             begin
                 SystemCodeUnit.ValidatePhoneNumber(Rec."Phone Number");
             end;
 
         }
+        
         field(70; "Status"; Option)
         {
             OptionMembers = " ",Active,Inactive,Graduated;
@@ -104,7 +102,6 @@ table 50201 "Student"
         {
             DataClassification = ToBeClassified;
         }
-
     }
 
     keys
@@ -128,16 +125,17 @@ table 50201 "Student"
         CurrentYear := Date2DMY(TodayDate, 3);
         CurrentMonth := Date2DMY(TodayDate, 2);
         CurrentDay := Date2DMY(TodayDate, 1);
-
         // Calculate Age
         Age := CurrentYear - BirthYear;
-
         // Adjust if birthday hasn't occurred yet this year
         if (CurrentMonth < BirthMonth) or ((CurrentMonth = BirthMonth) and (CurrentDay < BirthDay)) then
             Age := Age - 1;
     end;
 
+    trigger OnModify()
     var
-        SystemCodeunit: Codeunit SystemCodeunit;
-
+        Publisher: Codeunit EmailPublisher;
+    begin
+        Publisher.OnEmailChanged(Rec.Email);
+    end;
 }

@@ -14,21 +14,16 @@ page 50207 "Subject Card"
                 field("Subject Name"; Rec."Name")
                 {
                     ApplicationArea = All;
-
                 }
 
                 field(Credits; Rec.Credits)
                 {
                     ApplicationArea = All;
-
                 }
-
                 field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
-
                 }
-
                 field(Department; Rec.Department)
                 {
                     ApplicationArea = All;
@@ -47,14 +42,12 @@ page 50207 "Subject Card"
                 Caption = 'Students Enrolled';
                 Image = View;
                 trigger OnAction()
-                
+                var
+                    SystemCodeunit: Codeunit SystemCodeunit;
                 begin
                     SystemCodeunit.ShowRelatedRecords('Subject', Rec."Subject ID");
                 end;
-
             }
         }
     }
-    var
-        SystemCodeunit: Codeunit SystemCodeunit;
 }

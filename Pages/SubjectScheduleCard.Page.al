@@ -11,7 +11,7 @@ page 50214 "Subject Schedule"
         {
             group("Professor")
             {
-                field("Professor Name"; SystemCodeunit.GetRecordName('Professor', Rec."Professor ID"))
+                field("Professor Name"; ProfessorName)
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -20,7 +20,7 @@ page 50214 "Subject Schedule"
             }
             group("Subject")
             {
-                field("Subject Name"; SystemCodeunit.GetRecordName('Subject', Rec."Subject ID"))
+                field("Subject Name"; SubjectName)
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -46,5 +46,15 @@ page 50214 "Subject Schedule"
     }
 
     var
+        ProfessorName: Text[100];
+        SubjectName: Text[100];
+
+    trigger OnAfterGetRecord()
+    var
         SystemCodeunit: Codeunit SystemCodeunit;
+    begin
+        ProfessorName := SystemCodeunit.GetRecordName('Professor', Rec."Professor ID");
+        SubjectName := SystemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+    end;
+
 }

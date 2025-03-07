@@ -10,11 +10,10 @@ page 50223 "Active Students"
         {
             repeater(Group)
             {
-                field("Student"; studentName)
+                field("Student"; StudentName)
                 {
                     ApplicationArea = All;
                 }
-
 
                 field("Department"; Rec."Department")
                 {
@@ -25,12 +24,11 @@ page 50223 "Active Students"
     }
 
     var
-        SystemCodeunit: Codeunit SystemCodeunit;
         StudentName: Text[100];
-
     trigger OnAfterGetRecord()
+    var
+        SystemCodeunit: Codeunit SystemCodeunit;
     begin
         StudentName := SystemCodeunit.GetRecordName('Student', Rec."Student ID");
     end;
-
 }

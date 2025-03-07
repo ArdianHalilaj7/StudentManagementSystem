@@ -72,6 +72,8 @@ page 50205 "Professor Card"
                 Caption = 'Professor''s Course List';
                 Image = View;
                 trigger OnAction()
+                var
+                    SystemCodeunit: Codeunit SystemCodeunit;
                 begin
                     SystemCodeunit.ShowRelatedRecords('Professor', Rec."Professor ID");
                 end;
@@ -79,6 +81,4 @@ page 50205 "Professor Card"
             }
         }
     }
-    var
-        SystemCodeunit: Codeunit SystemCodeunit;
 }

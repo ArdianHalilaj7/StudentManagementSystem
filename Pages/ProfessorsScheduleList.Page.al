@@ -25,7 +25,9 @@ page 50210 "Professors' Schedule"
 
                     trigger OnLookup(var Text: Text): Boolean
                     var
+                        Professor: Record Professor;
                         ProfessorID: Integer;
+                        SystemCodeunit: Codeunit SystemCodeunit;
                     begin
                         if SystemCodeunit.PerformLookup(Text, 'Professor', ProfessorID) then begin
                             if Professor.Get(ProfessorID) then begin
@@ -43,7 +45,9 @@ page 50210 "Professors' Schedule"
                     TableRelation = Subject;
                     trigger OnLookup(var Text: Text): Boolean
                     var
+                        Subject: Record Subject;
                         SubjectID: Integer;
+                        SystemCodeunit: Codeunit SystemCodeunit;
                     begin
                         //If the Subject is selected before the Professor
                         if Rec."Professor ID" = 0 then begin
@@ -63,6 +67,8 @@ page 50210 "Professors' Schedule"
                     ApplicationArea = All;
                     DrillDown = true;
                     trigger OnDrillDown()
+                    var
+                        ProfessorSchedule: Record "Professor Schedule";
                     begin
                         if ProfessorSchedule.Get(Rec."Schedule ID") then begin
                             Page.Run(Page::"Professor Schedule", ProfessorSchedule);
@@ -79,14 +85,12 @@ page 50210 "Professors' Schedule"
     }
 
     var
-        SystemCodeunit: Codeunit SystemCodeunit;
-        ProfessorSchedule: Record "Professor Schedule";
-        Professor: Record Professor;
-        Subject: Record Subject;
         SubjectName: Text[100];
         ProfessorName: Text[100];
 
     trigger OnAfterGetRecord()
+    var
+        SystemCodeunit: Codeunit SystemCodeunit;
     begin
         ProfessorName := SystemCodeunit.GetRecordName('Professor', Rec."Professor ID");
         SubjectName := SystemCodeunit.GetRecordName('Subject', Rec."Subject ID");

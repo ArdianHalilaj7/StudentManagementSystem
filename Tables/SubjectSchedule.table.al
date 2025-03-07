@@ -7,7 +7,6 @@ table 50206 "Subject Schedule"
         {
             DataClassification = ToBeClassified;
             AutoIncrement = true;
-
         }
 
         field(20; "Professor ID"; Integer)
@@ -47,24 +46,4 @@ table 50206 "Subject Schedule"
             Clustered = false;
         }
     }
-    trigger OnInsert()
-    begin
-
-    end;
-
-    trigger OnModify()
-    begin
-
-    end;
-
-    trigger OnDelete()
-    begin
-
-    end;
-
-    trigger OnRename()
-    begin
-
-    end;
-
 }

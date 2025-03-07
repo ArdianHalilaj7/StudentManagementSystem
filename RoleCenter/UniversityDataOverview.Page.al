@@ -9,7 +9,7 @@ page 50221 "University Data Overview"
         {
             cuegroup(Overview)
             {
-                field("No. of Students"; StudentsCount)
+                field("No. of Students"; StudentsCount())
                 {
 
                     ApplicationArea = All;
@@ -22,7 +22,7 @@ page 50221 "University Data Overview"
                     end;
                 }
 
-                field("No. of Professors"; ProfessorsCount)
+                field("No. of Professors"; ProfessorsCount())
                 {
                     ApplicationArea = All;
                     DrillDownPageId = "Professors' List";
@@ -33,7 +33,8 @@ page 50221 "University Data Overview"
                         ProfessorsListPage.RunModal();
                     end;
                 }
-                field("No. of Subjects"; SubjectsCount)
+                
+                field("No. of Subjects"; SubjectsCount())
                 {
                     ApplicationArea = All;
                     DrillDownPageId = "Subjects' List";
@@ -45,22 +46,27 @@ page 50221 "University Data Overview"
                     end;
                 }
             }
-
         }
     }
 
-    trigger OnOpenPage()
+    local procedure StudentsCount(): Integer
     var
         SystemCodeunit: Codeunit SystemCodeunit;
     begin
-        StudentsCount := SystemCodeunit.CalculateCount('Student');
-        ProfessorsCount := SystemCodeunit.CalculateCount('Professor');
-        SubjectsCount := SystemCodeunit.CalculateCount('Subject');
+        exit(SystemCodeunit.CalculateCount('Student'));
     end;
 
+    local procedure ProfessorsCount(): Integer
     var
-        StudentsCount: Integer;
-        ProfessorsCount: Integer;
-        SubjectsCount: Integer;
+        SystemCodeunit: Codeunit SystemCodeunit;
+    begin
+        exit(SystemCodeunit.CalculateCount('Professor'));
+    end;
 
+    local procedure SubjectsCount(): Integer
+    var
+        SystemCodeunit: Codeunit SystemCodeunit;
+    begin
+        exit(SystemCodeunit.CalculateCount('Subject'));
+    end;
 }

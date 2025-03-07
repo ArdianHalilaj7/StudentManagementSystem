@@ -12,18 +12,14 @@ page 50203 "Student Card"
         {
             group("Personal Information")
             {
-                
-
                 field("First Name"; Rec."First Name")
                 {
                     ApplicationArea = All;
                 }
-
                 field("Last Name"; Rec."Last Name")
                 {
                     ApplicationArea = All;
                 }
-
                 field("Date of Birth"; Rec."Date of Birth")
                 {
                     ApplicationArea = All;
@@ -41,7 +37,6 @@ page 50203 "Student Card"
                 {
                     ApplicationArea = All;
                 }
-
             }
 
             group("University Information")
@@ -53,7 +48,6 @@ page 50203 "Student Card"
                 field("Degree Level"; Rec."Degree Level")
                 {
                     ApplicationArea = All;
-
                 }
                 field(Status; Rec.Status)
                 {
@@ -81,6 +75,8 @@ page 50203 "Student Card"
                 Caption = 'Student Enrollments in Subjects';
                 Image = View;
                 trigger OnAction()
+                var
+                    SystemCodeunit: Codeunit SystemCodeunit;
                 begin
                     SystemCodeunit.ShowRelatedRecords('Student', Rec."Student ID");
                 end;
@@ -88,6 +84,4 @@ page 50203 "Student Card"
         }
     }
 
-    var
-        SystemCodeunit: Codeunit SystemCodeunit;
 }

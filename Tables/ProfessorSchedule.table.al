@@ -8,34 +8,27 @@ table 50205 "Professor Schedule"
         {
             DataClassification = ToBeClassified;
             AutoIncrement = true;
- 
         }
  
         field(20; "Professor ID"; Integer)
         {
             DataClassification = ToBeClassified;
- 
         }
  
         field(30; "Subject ID"; Integer)
         {
             DataClassification = ToBeClassified;
- 
         }
  
         field(40; "Start Date"; Date)
         {
             DataClassification = ToBeClassified;
- 
         }
  
         field(50; "End Date"; Date)
         {
             DataClassification = ToBeClassified;
- 
         }
- 
- 
     }
  
     keys
@@ -50,25 +43,4 @@ table 50205 "Professor Schedule"
             Clustered = false;
         }
     }
- 
-    trigger OnInsert()
-    begin
- 
-    end;
- 
-    trigger OnModify()
-    begin
- 
-    end;
- 
-    trigger OnDelete()
-    begin
- 
-    end;
- 
-    trigger OnRename()
-    begin
- 
-    end;
- 
 }
