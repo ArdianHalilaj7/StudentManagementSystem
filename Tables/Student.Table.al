@@ -68,6 +68,12 @@ table 50201 "Student"
         field(61; "Email"; Text[50])
         {
             Caption = 'Email';
+            trigger OnValidate()
+            var
+                SystemCodeunit: Codeunit SystemCodeunit;
+            begin
+                SystemCodeUnit.ValidateEmail(Rec."Email");
+            end;
         }
 
         field(60; "Phone Number"; Text[14])
@@ -132,10 +138,5 @@ table 50201 "Student"
             Age := Age - 1;
     end;
 
-    trigger OnModify()
-    var
-        Publisher: Codeunit EmailPublisher;
-    begin
-        Publisher.OnEmailChanged(Rec.Email);
-    end;
+    
 }
