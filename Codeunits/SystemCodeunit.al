@@ -40,7 +40,7 @@ codeunit 50220 SystemCodeunit
             'Student':
                 begin
                     if Page.RunModal(Page::"Students' List", Student) = Action::LookupOK then begin
-                        Text := GetRecordName('Student', Student."Student ID");
+                        Text := Student."First Name";
                         ID := Student."Student ID";
                         exit(true);
                     end;
@@ -48,45 +48,35 @@ codeunit 50220 SystemCodeunit
 
             'Subject':
                 begin
-                    
                     if Professor."Professor ID" <> 0 then begin
-
                         Subject.SetRange(Department, Professor.Department);
                     end;
-
-                    // Display the page for selecting a Subject
                     if Page.RunModal(Page::"Subjects' List", Subject) = Action::LookupOK then begin
-                        // Get the name and set the ID based on the selected Subject
                         Text := GetRecordName('Subject', Subject."Subject ID");
-                        ID := Subject."Subject ID";  // Set the returned ID
-
-                        exit(true);  // Exit after successful selection
-                    end;
-                end;
-
-            'Professor':
-                begin
-                    if Page.RunModal(Page::"Professors' List", Professor) = Action::LookupOK then begin
-                        Text := GetRecordName('Professor', Professor."Professor ID");
-                        ID := Professor."Professor ID";  // Set the returned ID
+                        ID := Subject."Subject ID";
 
                         exit(true);
                     end;
                 end;
-
+            'Professor':
+                begin
+                    if Page.RunModal(Page::"Professors' List", Professor) = Action::LookupOK then begin
+                        Text := Professor."First Name";
+                        ID := Professor."Professor ID";
+                        exit(true);
+                    end;
+                end;
         end;
-
         exit(false);
-
     end;
 
     procedure ShowRelatedRecords(RecordType: Text; RecordID: Integer)
     var
         ProfessorCoursesPage: Page "Professors' Schedule";
-                                  StudentEnrollmentsPage: Page "Enrollments' List";
-                                  SubjectStudentsPage: Page "Enrollments' List";
-                                  ProfessorSchedule: Record "Professor Schedule";
-                                  Enrollment: Record Enrollment;
+        StudentEnrollmentsPage: Page "Enrollments' List";
+        SubjectStudentsPage: Page "Enrollments' List";
+        ProfessorSchedule: Record "Professor Schedule";
+        Enrollment: Record Enrollment;
     begin
         case RecordType of
             'Professor':
@@ -141,11 +131,10 @@ codeunit 50220 SystemCodeunit
             'Subject':
                 exit(Subject.Count());
         end;
-
         exit(0);
     end;
 
-   procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
+    procedure ValidatePhoneNumber(var PhoneNumber: Text[14])
     var
         Prefix: Text[4];
         //phoneNumber: Text[14];
@@ -181,7 +170,6 @@ codeunit 50220 SystemCodeunit
                 break;
             end;
         end;
-
         // If the area code is not valid, show an error
         if not IsValid then
             Error('Invalid phone number. Please, make sure to put a valid number');

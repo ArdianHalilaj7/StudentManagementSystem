@@ -10,7 +10,7 @@ page 50223 "Active Students"
         {
             repeater(Group)
             {
-                field("Student"; StudentName)
+                field("Student"; GetStudentName())
                 {
                     ApplicationArea = All;
                 }
@@ -22,13 +22,13 @@ page 50223 "Active Students"
             }
         }
     }
-
-    var
-        StudentName: Text[100];
-    trigger OnAfterGetRecord()
+    local procedure GetStudentName(): Text
     var
         SystemCodeunit: Codeunit SystemCodeunit;
     begin
-        StudentName := SystemCodeunit.GetRecordName('Student', Rec."Student ID");
+        if Rec.Get(Rec."Student ID")  then
+            exit(SystemCodeunit.GetRecordName('Student', Rec."Student ID"))
+        else
+            exit('<Student not found>');
     end;
 }

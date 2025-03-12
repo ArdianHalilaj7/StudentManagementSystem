@@ -11,7 +11,7 @@ page 50211 "Professor Schedule"
         {
             group(Professor)
             {
-                field("Professor Name"; ProfessorName)
+                field("Professor Name"; GetFieldName(Rec, 'Professor'))
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -20,7 +20,7 @@ page 50211 "Professor Schedule"
             }
             group(Subject)
             {
-                field("Subject Name"; SubjectName)
+                field("Subject Name"; GetFieldName(Rec, 'Subject'))
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -41,15 +41,24 @@ page 50211 "Professor Schedule"
         }
     }
 
+    procedure GetFieldName(ProfessorSchedule: Record "Professor Schedule"; RecordType: Text): Text
     var
-        ProfessorName: Text[100];
-        SubjectName: Text[100];
-
-    trigger OnAfterGetRecord()
-    var
+        Professor: Record "Professor";
+        Subject: Record "Subject";
         SystemCodeunit: Codeunit SystemCodeunit;
     begin
-        ProfessorName := SystemCodeunit.GetRecordName('Professor', Rec."Professor ID");
-        SubjectName := SystemCodeunit.GetRecordName('Subject', Rec."Subject ID");
+        case
+            RecordType of
+            'Professor':
+                if (Professor.Get(ProfessorSchedule."Professor ID")) then
+                    exit(SystemCodeunit.GetRecordName('Professor', Professor."Professor ID"))
+                else
+                    exit('<Professor not found>');
+            'Subject':
+                if (Subject.Get(ProfessorSchedule."Subject ID")) then
+                    exit(SystemCodeunit.GetRecordName('Subject', Subject."Subject ID"))
+                else
+                    exit('<Subject not found>');
+        end;
     end;
 }
