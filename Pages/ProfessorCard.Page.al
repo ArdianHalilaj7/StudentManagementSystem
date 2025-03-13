@@ -47,9 +47,6 @@ page 50205 "Professor Card"
                 {
                     ApplicationArea = All;
                 }
-
-
-
                 field("Office Address"; Rec."Office Address")
                 {
                     ApplicationArea = All;
