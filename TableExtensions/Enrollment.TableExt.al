@@ -12,6 +12,7 @@ tableextension 50200 EnrollmentExt extends Enrollment
         {
             FieldClass = FlowField;
             CalcFormula = lookup(Student."Last Name" where("Student ID" = field("Student ID")));
+            Editable = false;
         }
         field(50202; Subject; Text[250])
         {

@@ -9,7 +9,6 @@ pageextension 50201 ProfessorScheduleExt extends "Professors' Schedule"
                 ApplicationArea = All;
                 TableRelation = Professor."First Name";
                 trigger OnLookup(var Text: Text): Boolean
-
                 var
                     Professor: Record Professor;
                     ProfessorID: Integer;
@@ -29,20 +28,17 @@ pageextension 50201 ProfessorScheduleExt extends "Professors' Schedule"
             field("Professor Last Name"; Rec."Professor Last Name")
             {
                 ApplicationArea = All;
-
             }
-            
+
             field("Subject"; Rec."Subject")
             {
                 ApplicationArea = All;
                 TableRelation = Subject.Name;
                 trigger OnLookup(var Text: Text): Boolean
-
                 var
                     Subject: Record Subject;
                     SubjectID: Integer;
                     SystemCodeunit: Codeunit SystemCodeunit;
-
                 begin
                     if SystemCodeunit.PerformLookup(Text, 'Subject', SubjectID) then begin
                         if Subject.Get(SubjectID) then begin

@@ -7,7 +7,6 @@ pageextension 50202 SubjectsScheduleExt extends "Subjects' Schedule"
             field("Professor Name"; Rec."Professor Name")
             {
                 ApplicationArea = All;
-                TableRelation = Professor."First Name";
                 trigger OnLookup(var Text: Text): Boolean
 
                 var
@@ -32,7 +31,7 @@ pageextension 50202 SubjectsScheduleExt extends "Subjects' Schedule"
 
             }
 
-            field(Subject;Rec.Subject)
+            field(Subject; Rec.Subject)
             {
                 ApplicationArea = All;
                 TableRelation = Subject.Name;

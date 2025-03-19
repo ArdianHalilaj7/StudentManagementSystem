@@ -12,6 +12,7 @@ tableextension 50202 SubjectScheduleExt extends "Subject Schedule"
         {
             FieldClass = FlowField;
             CalcFormula = lookup(Professor."Last Name" where("Professor ID" = field("Professor ID")));
+            Editable = false;
         }
         field(50202; Subject; Text[250])
         {
@@ -19,5 +20,4 @@ tableextension 50202 SubjectScheduleExt extends "Subject Schedule"
             CalcFormula = lookup(Subject."Name" where("Subject ID" = field("Subject ID")));
         }
     }
-    
 }

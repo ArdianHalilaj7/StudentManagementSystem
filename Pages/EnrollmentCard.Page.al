@@ -18,91 +18,63 @@ page 50209 "Enrollment Card"
             }
             group(Student)
             {
-                field("Student Name"; GetFieldName(Rec, 'Student'))
+                field("Student Name"; StudentName)
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    trigger OnLookup(var Text: Text): Boolean
+                    var
+                        Student: Record Student;
+                        StudentID: Integer;
+                        SystemCodeunit: Codeunit SystemCodeunit;
+                    begin
+                        if Page.RunModal(Page::"Students' List", Student) = Action::LookupOK then begin
+                            Text := SystemCodeunit.GetRecordName('Student', Student."Student ID");
+                            if Student.Get(Student."Student ID") then
+                                Rec."Student ID" := Student."Student ID";
+                            exit(true);
+                        end;
+                    end;
                 }
             }
             group(Subject)
             {
-                field("Subject Name"; GetFieldName(Rec, 'Subject'))
+                field("Subject Name"; SubjectName)
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    trigger OnLookup(var Text: Text): Boolean
+                    var
+                        SubjectID: Integer;
+                        SystemCodeunit: Codeunit SystemCodeunit;
+                        Subject: Record Subject;
+                    begin
+                        if SystemCodeunit.PerformLookup(Text, 'Subject', SubjectID) then begin
+                            if Subject.Get(SubjectID) then begin
+                                Rec."Subject ID" := Subject."Subject ID";
+                            end;
+                            exit(true);
+                        end;
+                    end;
                 }
             }
         }
     }
-
-    // OPTION 1 - USING A LOCAL PROCEDURE WITH ENCAPSULATION (Functional Programming)
-    procedure GetFieldName(Enrollment: Record "Enrollment"; RecordType: Text): Text
     var
-        Student: Record "Student";
-        Subject: Record "Subject";
+        StudentName: Text[100];
+        SubjectName: Text[100];
+
+    trigger OnAfterGetRecord()
+    var
+        Student: Record Student;
+        Subject: Record Subject;
         SystemCodeunit: Codeunit SystemCodeunit;
     begin
-        case
-            RecordType of
-            'Student':
-                if (Student.Get(Enrollment."Student ID")) then
-                    exit(SystemCodeunit.GetRecordName('Student', Student."Student ID"))
-                else
-                    exit('<Student not found>');
-            'Subject':
-                if (Subject.Get(Enrollment."Subject ID")) then
-                    exit(SystemCodeunit.GetRecordName('Subject', Subject."Subject ID"))
-                else
-                    exit('<Subject not found>');
-        end;
+        if Student.Get(Rec."Student ID") then
+            StudentName := SystemCodeunit.GetRecordName('Student', Student."Student ID")
+        else
+            StudentName := '<Student not found>';
+        if Subject.Get(Rec."Subject ID") then
+            SubjectName := SystemCodeunit.GetRecordName('Subject', Subject."Subject ID")
+        else
+            SubjectName := '<Subject not found>';
     end;
-
-    //OPTION 2 
-    // local procedure GetStudentName(Enrollment: Record Enrollment): Text
-    // var
-    //     Student: Record "Student";
-    //     SystemCodeunit: Codeunit SystemCodeunit;
-
-    // begin
-    //     if (Student.Get(Enrollment."Student ID")) then
-    //         exit(SystemCodeunit.GetRecordName('Student'), Student."Student ID")
-    //     else
-    //         exit('<Student not found>');
-    // end;
-
-    // local procedure GetSubjectName(Enrollment: Record Enrollment): Text
-    // var
-    //     Subject: Record "Subject";
-    //     SystemCodeunit: Codeunit SystemCodeunit;
-
-    // begin
-    //     if (Subject.Get(Enrollment."Subject ID")) then
-    //         exit(SystemCodeunit.GetRecordName('Subject'))
-    //     else
-    //         exit('<Subject not found>');
-    // end;
-
-    // //OPTION 3 - USING THE TRIGGER FOR BETTER PERFORMANCE
-    // var
-    //     StudentName: Text[100];
-    //     SubjectName: Text[100];
-
-    // trigger OnAfterGetRecord()
-    // var
-    //     Student: Record Student;
-    //     Subject: Record Subject;
-    //     SystemCodeunit: Codeunit SystemCodeunit;
-    // begin
-    //     if Student.Get(Rec."Student ID") then
-    //         StudentName := SystemCodeunit.GetRecordName('Student')
-    //     else
-    //         StudentName := '<Student not found>';
-    //     if Subject.Get(Rec."Subject ID") then
-    //         SubjectName := SystemCodeunit.GetRecordName('Subject')
-    //     else
-    //         SubjectName := '<Subject not found>';
-    // end;
-
-    //Option 4 - USING FLOWFIELDS
-
 }

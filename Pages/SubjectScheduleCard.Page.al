@@ -11,18 +11,38 @@ page 50214 "Subject Schedule"
         {
             group("Professor")
             {
-                field("Professor Name"; GetFieldName(Rec, 'Professor'))
+                field("Professor Name"; ProfessorName)
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    trigger OnLookup(var Text: Text): Boolean
+                    var
+                        Professor: Record Professor;
+                        SystemCodeunit: Codeunit SystemCodeunit;
+                    begin
+                        if Page.RunModal(Page::"Professors' List", Professor) = Action::LookUpOK then
+                            Text := SystemCodeunit.GetRecordName('Professor', Professor."Professor ID");
+                        if Professor.Get(Professor."Professor ID") then
+                            Rec."Professor ID" := Professor."Professor ID";
+                        exit(true);
+                    end;
                 }
             }
             group("Subject")
             {
-                field("Subject Name"; GetFieldName(Rec, 'Subject'))
+                field("Subject Name"; SubjectName)
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    trigger OnLookup(var Text: Text): Boolean
+                    var
+                        Subject: Record Subject;
+                        SystemCodeunit: Codeunit SystemCodeunit;
+                    begin
+                        if Page.RunModal(Page::"Subjects' List", Subject) = Action::LookupOK then
+                            Text := SystemCodeunit.GetRecordName('Subject', Subject."Subject ID");
+                        if Subject.Get(Subject."Subject ID") then
+                            Rec."Subject ID" := Subject."Subject ID";
+                        exit(true);
+                    end;
                 }
             }
             group("Course Information")
@@ -44,25 +64,23 @@ page 50214 "Subject Schedule"
         }
     }
 
-    procedure GetFieldName(SubjectSchedule: Record "Subject Schedule"; RecordType: Text): Text
     var
-        Professor: Record "Professor";
-        Subject: Record "Subject";
+        ProfessorName: Text[100];
+        SubjectName: Text[100];
+
+    trigger OnAfterGetRecord()
+    var
+        Professor: Record Professor;
+        Subject: Record Subject;
         SystemCodeunit: Codeunit SystemCodeunit;
     begin
-        case
-            RecordType of
-            'Professor':
-                if (Professor.Get(SubjectSchedule."Professor ID")) then
-                    exit(SystemCodeunit.GetRecordName('Professor', Professor."Professor ID"))
-                else
-                    exit('<Professor not found>');
-            'Subject':
-                if (Subject.Get(SubjectSchedule."Subject ID")) then
-                    exit(SystemCodeunit.GetRecordName('Subject', Subject."Subject ID"))
-                else
-                    exit('<Subject not found>');
-        end;
+        if Professor.Get(Rec."Professor ID") then
+            ProfessorName := SystemCodeunit.GetRecordName('Professor', Professor."Professor ID")
+        else
+            ProfessorName := '<Professor not found>';
+        if Subject.Get(Rec."Subject ID") then
+            SubjectName := SystemCodeunit.GetRecordName('Subject', Subject."Subject ID")
+        else
+            SubjectName := '<Subject not found>';
     end;
-
 }

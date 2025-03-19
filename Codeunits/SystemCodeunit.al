@@ -100,7 +100,7 @@ codeunit 50220 SystemCodeunit
                         StudentEnrollmentsPage.RunModal();
                     end;
                 end;
-
+ 
             'Subject':
                 begin
                     Enrollment.SetRange("Subject ID", RecordID);
